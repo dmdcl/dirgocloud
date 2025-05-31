@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Web</title>
+    <title>DirGo Cloud - Raspberry Pi</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="container">
+        <h1>DirGo Cloud</h1>
+        <p class="subtitle">Proyecto alojado en Raspberry Pi</p>
+        
+        <!-- Sistema de pestañas -->
+        <div class="tabs">
+            <button class="tablink active" onclick="openTab('home', this)">Inicio</button>
+            <button class="tablink" onclick="openTab('pagina1', this)">Página 1</button>
+            <button class="tablink" onclick="openTab('pagina2', this)">Página 2</button>
+            <button class="tablink" onclick="openTab('pagina3', this)">Página 3</button>
+        </div>
+        
+        <!-- Contenido de las pestañas -->
+        <div id="home" class="tabcontent" style="display: block;">
+            <h2>Bienvenido</h2>
+            <p>Servidor personal Dirgo Cloud</p>
+            
+            <div class="social-icons">
+                <a href="#"><img src="img/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="img/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="img/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+        
+        <div id="pagina1" class="tabcontent"></div>
+        <div id="pagina2" class="tabcontent"></div>
+        <div id="pagina3" class="tabcontent"></div>
+    </div>
 
-<div class="tabs">
-    <button class="tablinks active" onclick="openTab(event, 'Pagina1')">Página 1</button>
-    <button class="tablinks" onclick="openTab(event, 'Pagina2')">Página 2</button>
-    <button class="tablinks" onclick="openTab(event, 'Pagina3')">Página 3</button>
-</div>
-
-<!-- Contenido de las pestañas -->
-<div id="Pagina1" class="tabcontent" style="display: block;">
-    <!-- Cargar contenido de pagina1.html -->
-    <iframe src="paginas/pagina1.html" frameborder="0" style="width:100%; height:500px;"></iframe>
-</div>
-
-<div id="Pagina2" class="tabcontent">
-    <!-- Cargar contenido de pagina2.html -->
-    <iframe src="paginas/pagina2.html" frameborder="0" style="width:100%; height:500px;"></iframe>
-</div>
-
-<div id="Pagina3" class="tabcontent">
-    <!-- Cargar contenido de pagina3.html -->
-    <iframe src="paginas/pagina3.html" frameborder="0" style="width:100%; height:500px;"></iframe>
-</div>
-
-<script src="js/scripts.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
