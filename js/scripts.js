@@ -1,39 +1,54 @@
 function openTab(tabName, element) {
-    // Oculta todos los contenidos de pestañas
-    var tabcontents = document.getElementsByClassName("tabcontent");
-    for (var i = 0; i < tabcontents.length; i++) {
-        tabcontents[i].style.display = "none";
+    // Ocultar todos los contenidos
+    document.querySelectorAll('.tabcontent').forEach(content => {
+        content.style.display = 'none';
+        content.innerHTML = ''; // Limpiar contenido previo
+    });
+    
+    // Desactivar todos los botones
+    document.querySelectorAll('.tablink').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Activar el botón seleccionado
+    element.classList.add('active');
+    
+    // Mostrar el contenido adecuado
+    const tabContent = document.getElementById(tabName);
+    tabContent.style.display = 'block';
+    
+    // Cargar contenido externo si no es la pestaña de inicio
+    if (tabName !== 'home') {
+        loadExternalContent(tabName);
     }
-    
-    // Remueve la clase 'active' de todos los botones
-    var tablinks = document.getElementsByClassName("tablink");
-    for (var i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    
-    // Muestra la pestaña actual y marca el botón como activo
-    document.getElementById(tabName).style.display = "block";
-    element.className += " active";
-    
-    // Guarda la pestaña activa en localStorage
-    localStorage.setItem('lastActiveTab', tabName);
 }
 
-// Cargar la última pestaña activa al recargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    var lastActiveTab = localStorage.getItem('lastActiveTab');
-    if (lastActiveTab) {
-        var tabElement = document.querySelector(`.tablink[onclick*="${lastActiveTab}"]`);
-        if (tabElement) {
-            openTab(lastActiveTab, tabElement);
-        } else {
-            // Mostrar pestaña de inicio por defecto
-            document.getElementById('home').style.display = "block";
-            document.querySelector('.tablink').className += " active";
-        }
-    } else {
-        // Mostrar pestaña de inicio por defecto
-        document.getElementById('home').style.display = "block";
-        document.querySelector('.tablink').className += " active";
-    }
+function loadExternalContent(tabName) {
+    const contentDiv = document.getElementById(tabName);
+    const contentFile = `paginas/${tabName}.html`;
+    
+    fetch(contentFile)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Página no encontrada');
+            }
+            return response.text();
+        })
+        .then(html => {
+            contentDiv.innerHTML = `<div class="loaded-content">${html}</div>`;
+        })
+        .catch(error => {
+            contentDiv.innerHTML = `
+                <div class="loaded-content error">
+                    <h3>Error al cargar el contenido</h3>
+                    <p>${error.message}</p>
+                </div>
+            `;
+        });
+}
+
+// Inicializar - Mostrar solo la pestaña de inicio al cargar
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('home').style.display = 'block';
+    document.querySelector('.tablink').classList.add('active');
 });
