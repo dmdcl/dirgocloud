@@ -3,43 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Web con Pestañas</title>
+    <title>Mi Sitio Web</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido a mi sitio</h1>
-        
-        <!-- Pestañas -->
-        <div class="tabs">
-            <button class="tablink active" onclick="openTab('home', this)">Inicio</button>
-            <button class="tablink" onclick="openTab('pagina1', this)">Página 1</button>
-            <button class="tablink" onclick="openTab('pagina2', this)">Página 2</button>
-            <button class="tablink" onclick="openTab('pagina3', this)">Página 3</button>
-        </div>
-        
-        <!-- Contenido de las pestañas -->
-        <div id="home" class="tabcontent" style="display: block;">
-            <h2>Contenido de Inicio</h2>
-            <p>Bienvenido a Dirgo Cloud. Projecto alojado en Raspberry Pi.</p>
-        </div>
-        
-        <div id="pagina1" class="tabcontent">
-            <h2>Contenido Página 1</h2>
-            <p>Aquí va el contenido de la primera pestaña.</p>
-        </div>
-        
-        <div id="pagina2" class="tabcontent">
-            <h2>Contenido Página 2</h2>
-            <p>Aquí va el contenido de la segunda pestaña.</p>
-        </div>
-        
-        <div id="pagina3" class="tabcontent">
-            <h2>Contenido Página 3</h2>
-            <p>Aquí va el contenido de la tercera pestaña.</p>
-        </div>
-    </div>
-    
-    <script src="js/scripts.js"></script>
+
+<div class="tabs">
+    <button class="tablinks active" onclick="openTab(event, 'Pagina1')">Página 1</button>
+    <button class="tablinks" onclick="openTab(event, 'Pagina2')">Página 2</button>
+    <button class="tablinks" onclick="openTab(event, 'Pagina3')">Página 3</button>
+</div>
+
+<!-- Contenido de las pestañas -->
+<div id="Pagina1" class="tabcontent" style="display: block;">
+    <!-- Cargar contenido de pagina1.html -->
+    <iframe src="paginas/pagina1.html" frameborder="0" style="width:100%; height:500px;"></iframe>
+</div>
+
+<div id="Pagina2" class="tabcontent">
+    <!-- Cargar contenido de pagina2.html -->
+    <iframe src="paginas/pagina2.html" frameborder="0" style="width:100%; height:500px;"></iframe>
+</div>
+
+<div id="Pagina3" class="tabcontent">
+    <!-- Cargar contenido de pagina3.html -->
+    <iframe src="paginas/pagina3.html" frameborder="0" style="width:100%; height:500px;"></iframe>
+</div>
+
+<script src="js/scripts.js"></script>
 </body>
 </html>

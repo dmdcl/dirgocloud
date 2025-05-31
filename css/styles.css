@@ -1,167 +1,39 @@
-/* Estilo básico para las pestañas */
-.tablink {
-    background-color: #555;
-    color: white;
+/* Estilos para las pestañas */
+.tabs {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tabs button {
+    background-color: inherit;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
+    transition: 0.3s;
     font-size: 17px;
-    width: 25%;
 }
 
-.tablink:hover {
-    background-color: #777;
+.tabs button:hover {
+    background-color: #ddd;
 }
 
-.active {
+.tabs button.active {
     background-color: #4CAF50;
+    color: white;
 }
 
-/* Estilo del contenido de la pestaña */
 .tabcontent {
-    color: black;
     display: none;
-    padding: 50px 20px;
-    clear: both;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    animation: fadeEffect 1s;
 }
 
-/* Estilos para la página de redes sociales */
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.social-card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.social-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
-
-.social-link {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    height: 100%;
-}
-
-.social-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.social-icon svg {
-    width: 32px;
-    height: 32px;
-    fill: white;
-}
-
-.social-card h3 {
-    margin: 10px 0;
-    font-size: 1.4em;
-    color: #222;
-}
-
-.social-card p {
-    color: #555;
-    margin-bottom: 15px;
-    font-size: 0.95em;
-}
-
-.follow-text {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.social-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    color: #666;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Colores específicos para cada red social */
-.instagram {
-    border-top: 4px solid #E1306C;
-}
-
-.instagram .social-icon {
-    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-}
-
-.instagram .follow-text {
-    background-color: #E1306C;
-    color: white;
-}
-
-.instagram:hover .follow-text {
-    background-color: #c8235a;
-}
-
-.github {
-    border-top: 4px solid #333;
-}
-
-.github .social-icon {
-    background-color: #333;
-}
-
-.github .follow-text {
-    background-color: #333;
-    color: white;
-}
-
-.github:hover .follow-text {
-    background-color: #222;
-}
-
-.linkedin {
-    border-top: 4px solid #0077B5;
-}
-
-.linkedin .social-icon {
-    background-color: #0077B5;
-}
-
-.linkedin .follow-text {
-    background-color: #0077B5;
-    color: white;
-}
-
-.linkedin:hover .follow-text {
-    background-color: #006097;
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
