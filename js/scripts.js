@@ -52,3 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('home').style.display = 'block';
     document.querySelector('.tablink').classList.add('active');
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Verificar que todas las tarjetas existen
+    const cards = document.querySelectorAll('.social-card');
+    console.log(`Tarjetas encontradas: ${cards.length}`);
+    
+    // Forzar visualización si hay algún problema
+    cards.forEach(card => {
+        card.style.display = 'flex';
+    });
+    
+    // Verificar dimensiones del contenedor
+    const container = document.querySelector('.social-cards-container');
+    if (container) {
+        console.log('Ancho del contenedor:', container.offsetWidth);
+        console.log('Estilos aplicados:', window.getComputedStyle(container).display);
+    }
+});

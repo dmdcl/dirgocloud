@@ -114,28 +114,30 @@ h1 {
 
 /* Estilos para la sección de redes sociales */
 .page-content {
-    max-width: 800px;
+    max-width: 900px;  /* Aumentamos el ancho máximo */
     margin: 0 auto;
     padding: 20px;
 }
 
 .social-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Forzamos 3 columnas */
+    gap: 25px;
     margin: 30px 0;
 }
 
 .social-card {
     background: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 25px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px; /* Altura mínima para consistencia */
 }
 
 .social-card:hover {
@@ -144,9 +146,9 @@ h1 {
 }
 
 .social-icon {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 15px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,31 +157,34 @@ h1 {
 }
 
 .social-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 }
 
 .social-card h3 {
-    margin: 10px 0 5px;
+    margin: 15px 0 8px;
     color: #2c3e50;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .social-card p {
     color: #7f8c8d;
-    font-size: 0.9rem;
-    margin: 5px 0;
+    font-size: 1rem;
+    margin: 8px 0 15px;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .follow-text {
     display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
+    margin-top: 15px;
+    padding: 8px 15px;
     background: #3498db;
     color: white;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     transition: background 0.3s;
 }
 
@@ -192,10 +197,10 @@ h1 {
 }
 
 .social-footer {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: center;
     color: #7f8c8d;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
 }
 
@@ -229,3 +234,182 @@ h1 {
 .linkedin .follow-text {
     background: #0077b5;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .social-grid {
+        grid-template-columns: 1fr; /* 1 columna en móvil */
+    }
+    
+    .social-card {
+        min-height: auto; /* Eliminamos altura fija en móvil */
+    }
+}
+
+/* Estilos nuevos para la sección de contacto */
+.contact-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.contact-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.social-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.social-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.social-card h3 {
+    margin: 0 0 0.5rem;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.social-card p {
+    color: #7f8c8d;
+    margin: 0 0 1.5rem;
+    flex-grow: 1;
+}
+
+.social-button {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* Colores específicos */
+.instagram-card .card-icon {
+    background: #fdf2f8;
+}
+.instagram-card .card-icon svg {
+    color: #e1306c;
+}
+.instagram-card .social-button {
+    background: #e1306c;
+}
+
+.github-card .card-icon {
+    background: #f0f5ff;
+}
+.github-card .card-icon svg {
+    color: #333;
+}
+.github-card .social-button {
+    background: #333;
+}
+
+.linkedin-card .card-icon {
+    background: #eff6ff;
+}
+.linkedin-card .card-icon svg {
+    color: #0077b5;
+}
+.linkedin-card .social-button {
+    background: #0077b5;
+}
+
+.contact-footer {
+    text-align: center;
+    color: #7f8c8d;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .social-cards-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-section {
+        padding: 1.5rem;
+    }
+    
+    .social-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Colores individuales (opcional) */
+.instagram-card .card-icon svg {
+    color: #E1306C;
+}
+
+.github-card .card-icon svg {
+    color: #333;
+}
+
+.linkedin-card .card-icon svg {
+    color: #0e76a8;
+}
+
+
