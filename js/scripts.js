@@ -2,7 +2,10 @@ function openTab(tabName, element) {
     // Ocultar todos los contenidos
     document.querySelectorAll('.tabcontent').forEach(content => {
         content.style.display = 'none';
-        content.innerHTML = ''; // Limpiar contenido previo
+        // No limpiar el contenido del home para que persista
+        if (content.id !== 'home') {
+            content.innerHTML = '';
+        }
     });
     
     // Desactivar todos los botones
@@ -17,7 +20,7 @@ function openTab(tabName, element) {
     const tabContent = document.getElementById(tabName);
     tabContent.style.display = 'block';
     
-    // Cargar contenido externo si no es la pestaña de inicio
+    // Cargar contenido externo solo si no es la pestaña de inicio
     if (tabName !== 'home') {
         loadExternalContent(tabName);
     }
@@ -52,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('home').style.display = 'block';
     document.querySelector('.tablink').classList.add('active');
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar que todas las tarjetas existen
     const cards = document.querySelectorAll('.social-card');
