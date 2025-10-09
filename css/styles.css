@@ -82,7 +82,8 @@ h1 {
     text-align: center;
 }
 
-.main-image img {
+.main-image img,
+.responsive-img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
