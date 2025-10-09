@@ -1,0 +1,142 @@
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    /* Header */
+    .header-content {
+        padding: 0 var(--space-md);
+    }
+
+    .nav-tabs {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--color-dark);
+        padding: var(--space-lg);
+        gap: var(--space-sm);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-base);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-tabs.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .tab-btn {
+        width: 100%;
+        text-align: left;
+        padding: var(--space-lg);
+    }
+
+    /* Container */
+    .container {
+        padding: var(--space-2xl) var(--space-md);
+    }
+
+    /* Hero */
+    .hero {
+        padding: var(--space-2xl) 0;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    /* Grids */
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    /* Cards */
+    .card {
+        padding: var(--space-lg);
+    }
+
+    /* Section */
+    .section {
+        padding: var(--space-2xl) 0;
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .hero-badges {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .badge {
+        width: 100%;
+        text-align: center;
+    }
+
+    .card {
+        padding: var(--space-md);
+    }
+
+    .container {
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+/* Large Desktop (1280px and above) */
+@media (min-width: 1280px) {
+    .container {
+        padding: var(--space-4xl) var(--space-xl);
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .bg-animation,
+    header,
+    .mobile-menu-toggle,
+    .tab-btn,
+    footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+}

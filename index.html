@@ -3,39 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dirgo Cloud - Raspberry Pi</title>
-    <link rel="icon" href="img/lexa.png" type="image/png">  <!-- Favicon -->
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Portfolio personal de Dirgo - Estudiante de Ingeniería en Sistemas Computacionales especializado en Ciberseguridad">
+    <meta name="author" content="Dirgo">
+    <title>Dirgo Cloud - Portfolio & Blog</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/lexa.png" type="image/png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Dirgo Cloud</h1>
-        <p class="subtitle">Pagina web alojada en Raspberry Pi</p>
-        
-        <!-- Sistema de pestañas -->
-        <div class="tabs">
-            <button class="tablink active" onclick="openTab('home', this)">Inicio</button>
-            <button class="tablink" onclick="openTab('pagina1', this)">¿Quién es Dirgo?</button>
-            <button class="tablink" onclick="openTab('pagina2', this)">Proyectos</button>
-            <button class="tablink" onclick="openTab('pagina3', this)">Contacto</button>
-        </div>
-        
-        <!-- Contenido de las pestañas -->
-        <div id="home" class="tabcontent" style="display: block;">
-            <h2>Bienvenido</h2>
-            <p>Servidor personal Dirgo Cloud</p>
-            
-            <!-- Imagen grande añadida -->
-            <div class="main-image">
-                <img src="img/rpi.jpg" alt="Servidor Dirgo Cloud" onerror="this.onerror=null;this.src='img/placeholder.jpg';">
-            </div>
-        </div>
-        
-        <div id="pagina1" class="tabcontent"></div>
-        <div id="pagina2" class="tabcontent"></div>
-        <div id="pagina3" class="tabcontent"></div>
-    </div>
+    <!-- Background Animation -->
+    <div class="bg-animation" aria-hidden="true"></div>
 
-    <script src="js/scripts.js"></script>
+    <!-- Header -->
+    <header id="header" role="banner">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">Dirgo Cloud</span>
+            </div>
+            
+            <nav role="navigation" aria-label="Main navigation">
+                <ul class="nav-tabs" role="tablist">
+                    <li role="presentation">
+                        <button class="tab-btn active" 
+                                role="tab" 
+                                aria-selected="true" 
+                                aria-controls="home-tab"
+                                data-tab="home">
+                            Inicio
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button class="tab-btn" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="about-tab"
+                                data-tab="about">
+                            Sobre mí
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button class="tab-btn" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="projects-tab"
+                                data-tab="projects">
+                            Proyectos
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button class="tab-btn" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="blog-tab"
+                                data-tab="blog">
+                            Blog
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button class="tab-btn" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="contact-tab"
+                                data-tab="contact">
+                            Contacto
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <div class="container">
+            <!-- Home Tab -->
+            <section id="home-tab" class="tab-content active" role="tabpanel" aria-labelledby="home">
+                <div class="hero">
+                    <h1 class="hero-title">Bienvenido a Dirgo Cloud</h1>
+                    <p class="hero-subtitle">Servidor personal alojado en Raspberry Pi</p>
+                    <div class="hero-badges">
+                        <span class="badge">Ciberseguridad</span>
+                        <span class="badge">Cloud Computing</span>
+                        <span class="badge">Desarrollo Web</span>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="img/rpi.jpg" 
+                         alt="Servidor Raspberry Pi de Dirgo Cloud" 
+                         loading="lazy"
+                         onerror="this.src='img/placeholder.jpg'">
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <h3>Estudiante</h3>
+                        <p>Ingeniería en Sistemas</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔐</div>
+                        <h3>Especialidad</h3>
+                        <p>Ciberseguridad</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">☁️</div>
+                        <h3>Cloud</h3>
+                        <p>AWS Enthusiast</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Tab -->
+            <section id="about-tab" class="tab-content" role="tabpanel" aria-labelledby="about"></section>
+
+            <!-- Projects Tab -->
+            <section id="projects-tab" class="tab-content" role="tabpanel" aria-labelledby="projects"></section>
+
+            <!-- Blog Tab -->
+            <section id="blog-tab" class="tab-content" role="tabpanel" aria-labelledby="blog"></section>
+
+            <!-- Contact Tab -->
+            <section id="contact-tab" class="tab-content" role="tabpanel" aria-labelledby="contact"></section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2024 Dirgo Cloud. Alojado en Raspberry Pi con ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/components/TabManager.js"></script>
+    <script src="js/components/ContentLoader.js"></script>
+    <script src="js/components/MobileMenu.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

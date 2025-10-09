@@ -1,22 +1,556 @@
-<div class="page-content">
-    <h2>Portafolio de proyectos</h2>
-    
-    <div class="project-card">
-        <h3>Red LAN virtualizada</h3>
-        <p>Desarrollo de una red virtualizada con servidores y clientes formando un dominio.</p>
-        <span class="tech-used">Tecnologías: Windows Server, Ubuntu, Oracle Virtual Box.</span>
+<div class="projects-section">
+    <div class="section-header">
+        <h2 class="section-title">🚀 Portafolio de Proyectos</h2>
+        <p class="section-subtitle">Una colección de mis proyectos más destacados en tecnología y desarrollo</p>
     </div>
-    
-    <div class="project-card">
-        <h3>Página web desplegada en AWS</h3>
-        <p>Página web alojada dentro de internet mediante un nombre de dominio utilizando una IP elástica.</p>
-        <span class="tech-used">Tecnologías: EC2, Route 53, HTTPS</span>
+
+    <!-- Featured Project -->
+    <div class="project-featured">
+        <div class="project-badge">⭐ Proyecto Destacado</div>
+        <div class="project-featured-content">
+            <div class="project-featured-image">
+                <img src="../img/rpi.jpg" alt="Raspberry Pi Server" loading="lazy" onerror="this.src='../img/placeholder.jpg'">
+            </div>
+            <div class="project-featured-info">
+                <h3>🍓 Servidor Web con Raspberry Pi</h3>
+                <p class="project-description">
+                    Implementación completa de un servidor web personal utilizando Raspberry Pi 4. 
+                    El proyecto incluye configuración de Apache, DNS dinámico con No-IP, y acceso 
+                    remoto seguro mediante SSH. El servidor aloja esta misma página web y está 
+                    optimizado para bajo consumo energético.
+                </p>
+                <div class="project-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-icon">⚡</span>
+                        <div>
+                            <strong>Eficiencia</strong>
+                            <p>Bajo consumo eléctrico</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">🔒</span>
+                        <div>
+                            <strong>Seguridad</strong>
+                            <p>SSH hardening & firewall</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">🌐</span>
+                        <div>
+                            <strong>Accesibilidad</strong>
+                            <p>24/7 en línea</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge">Raspberry Pi</span>
+                    <span class="tech-badge">Apache</span>
+                    <span class="tech-badge">Linux</span>
+                    <span class="tech-badge">No-IP</span>
+                    <span class="tech-badge">SSH</span>
+                </div>
+                <div class="project-links">
+                    <button class="btn btn-primary" onclick="alert('Actualmente navegando en este proyecto! 🎉')">
+                        Ver proyecto →
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div class="project-card">
-        <h3>Proyecto de Raspberry Pi</h3>
-        <p>Proyecto alojado en una Raspberry Pi que permite el acceso a un servidor web.</p>
-        <span class="tech-used">Tecnologías: Raspberry Pi, Apache.</span>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+        <!-- Project 1: AWS Web -->
+        <div class="project-card">
+            <div class="project-image">
+                <img src="../img/placeholder.jpg" alt="AWS Cloud" loading="lazy">
+                <div class="project-overlay">
+                    <span class="project-status">✅ Completado</span>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3>☁️ Página Web Desplegada en AWS</h3>
+                <p class="project-description">
+                    Desarrollo y despliegue de una aplicación web completa en Amazon Web Services 
+                    utilizando EC2 para el hosting, Route 53 para gestión de DNS, y configuración 
+                    de certificados SSL/TLS para HTTPS seguro.
+                </p>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">🎯</span>
+                        <span>Objetivo:</span>
+                        <span>Hosting escalable</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏱️</span>
+                        <span>Duración:</span>
+                        <span>2 semanas</span>
+                    </div>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge tech-aws">AWS EC2</span>
+                    <span class="tech-badge tech-aws">Route 53</span>
+                    <span class="tech-badge tech-security">HTTPS</span>
+                    <span class="tech-badge tech-web">HTML/CSS</span>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-secondary" onclick="alert('Demo no disponible - Proyecto en AWS privado')">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: Virtualized Network -->
+        <div class="project-card">
+            <div class="project-image">
+                <img src="../img/placeholder.jpg" alt="Network" loading="lazy">
+                <div class="project-overlay">
+                    <span class="project-status">✅ Completado</span>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3>🌐 Red LAN Virtualizada</h3>
+                <p class="project-description">
+                    Diseño e implementación de una infraestructura de red virtualizada completa 
+                    con Active Directory, incluyendo servidor Windows Server 2019 como controlador 
+                    de dominio y múltiples clientes Ubuntu unidos al dominio.
+                </p>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">🎯</span>
+                        <span>Objetivo:</span>
+                        <span>Administración de red</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏱️</span>
+                        <span>Duración:</span>
+                        <span>3 semanas</span>
+                    </div>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge tech-windows">Windows Server</span>
+                    <span class="tech-badge tech-linux">Ubuntu</span>
+                    <span class="tech-badge tech-vm">VirtualBox</span>
+                    <span class="tech-badge tech-network">Active Directory</span>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-secondary" onclick="alert('Documentación del proyecto próximamente en el blog')">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Portfolio Website -->
+        <div class="project-card">
+            <div class="project-image">
+                <img src="../img/placeholder.jpg" alt="Web Development" loading="lazy">
+                <div class="project-overlay">
+                    <span class="project-status status-active">🔄 En desarrollo</span>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3>💼 Portfolio Personal Moderno</h3>
+                <p class="project-description">
+                    Diseño y desarrollo de un sitio web portfolio con arquitectura modular, 
+                    sistema de pestañas dinámico, sección de blog, y diseño responsivo. 
+                    Implementado con JavaScript vanilla y CSS moderno.
+                </p>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">🎯</span>
+                        <span>Objetivo:</span>
+                        <span>Presencia profesional</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏱️</span>
+                        <span>Duración:</span>
+                        <span>En progreso</span>
+                    </div>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge tech-web">HTML5</span>
+                    <span class="tech-badge tech-web">CSS3</span>
+                    <span class="tech-badge tech-js">JavaScript</span>
+                    <span class="tech-badge tech-design">Responsive</span>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-primary" onclick="alert('¡Estás viendo este proyecto ahora mismo! 🎉')">
+                        Estás aquí →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: Cybersecurity Lab -->
+        <div class="project-card">
+            <div class="project-image">
+                <img src="../img/placeholder.jpg" alt="Security" loading="lazy">
+                <div class="project-overlay">
+                    <span class="project-status status-planning">📋 Planeado</span>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3>🔐 Laboratorio de Ciberseguridad</h3>
+                <p class="project-description">
+                    Configuración de un entorno de laboratorio para pruebas de penetración, 
+                    análisis de vulnerabilidades y práctica de técnicas de hardening de sistemas. 
+                    Incluye máquinas vulnerables y herramientas de seguridad.
+                </p>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">🎯</span>
+                        <span>Objetivo:</span>
+                        <span>Práctica de pentesting</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏱️</span>
+                        <span>Estado:</span>
+                        <span>Próximamente</span>
+                    </div>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge tech-security">Kali Linux</span>
+                    <span class="tech-badge tech-security">Metasploit</span>
+                    <span class="tech-badge tech-vm">VirtualBox</span>
+                    <span class="tech-badge tech-network">Wireshark</span>
+                </div>
+                <div class="project-footer">
+                    <button class="btn btn-secondary" onclick="alert('Proyecto en fase de planificación')">
+                        Ver roadmap
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section">
+        <h3>¿Tienes un proyecto en mente?</h3>
+        <p>Estoy siempre abierto a colaborar en proyectos interesantes</p>
+        <button class="btn btn-primary" onclick="window.location.hash='contact'">
+            Contáctame →
+        </button>
     </div>
 </div>
-    
+
+<style>
+.projects-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* Featured Project */
+.project-featured {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    position: relative;
+}
+
+.project-badge {
+    position: absolute;
+    top: -12px;
+    left: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.project-featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.project-featured-image {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-featured-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #e2e8f0;
+}
+
+.project-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.highlight-icon {
+    font-size: 1.5rem;
+}
+
+.highlight-item strong {
+    display: block;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+}
+
+.highlight-item p {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.project-card {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.project-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.project-status {
+    background: rgba(16, 185, 129, 0.9);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.project-status.status-active {
+    background: rgba(59, 130, 246, 0.9);
+}
+
+.project-status.status-planning {
+    background: rgba(251, 191, 36, 0.9);
+}
+
+.project-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 1rem;
+}
+
+.project-description {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.5rem;
+}
+
+.detail-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.detail-icon {
+    font-size: 1rem;
+}
+
+.detail-item span:nth-child(2) {
+    color: #94a3b8;
+}
+
+.detail-item span:nth-child(3) {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+    padding: 0.4rem 0.8rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #818cf8;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tech-badge.tech-aws {
+    background: rgba(255, 153, 0, 0.1);
+    border-color: rgba(255, 153, 0, 0.2);
+    color: #ffa726;
+}
+
+.tech-badge.tech-security {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
+
+.tech-badge.tech-web {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.tech-badge.tech-js {
+    background: rgba(251, 191, 36, 0.1);
+    border-color: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+}
+
+.tech-badge.tech-windows {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+}
+
+.tech-badge.tech-linux {
+    background: rgba(251, 146, 60, 0.1);
+    border-color: rgba(251, 146, 60, 0.2);
+    color: #fb923c;
+}
+
+.tech-badge.tech-vm,
+.tech-badge.tech-network,
+.tech-badge.tech-design {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.project-footer {
+    margin-top: auto;
+}
+
+.project-links {
+    margin-top: 1.5rem;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.cta-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #e2e8f0;
+}
+
+.cta-section p {
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .project-featured-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+        padding: 2rem 1.5rem;
+    }
+}
+</style>

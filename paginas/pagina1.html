@@ -1,16 +1,400 @@
-<div class="page-content">
-    <h2>Dirgo</h2>
-    <p>¿Quién soy?</p>
-    <ul>
-        <li>Estudiante de la carrera Ingenieria en Sistemas Computacionales.</li>
-        <li>Especialidad en Ciberseguridad integral.</li>
-        <li>Entusiasta de los servicios en nube como AWS</li>
-        <li>Me gusta aprender y usar nuevas herramientas</li>     
-    </ul>
-    
-    <div class="feature-box">
-        <h3>Caminante no hay camino.</h3>
-        <p>Se hace camino al andar.</p>
-        <img src="../img/lexa.jpg" alt="Raspberry Pi" class="responsive-img">
+<div class="about-section">
+    <div class="about-hero">
+        <div class="about-image-container">
+            <img src="../img/lexa.jpg" alt="Dirgo" class="about-image" loading="lazy" onerror="this.src='../img/placeholder.jpg'">
+            <div class="about-badge">👨‍💻 Desarrollador</div>
+        </div>
+        <div class="about-intro">
+            <h2 class="about-title">Hola, soy <span class="highlight">Dirgo</span></h2>
+            <p class="about-subtitle">Estudiante de Ingeniería en Sistemas Computacionales</p>
+            <p class="about-description">
+                Apasionado por la tecnología, la ciberseguridad y el aprendizaje continuo. 
+                Me especializo en proteger sistemas y crear soluciones en la nube.
+            </p>
+        </div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills-section">
+        <h3 class="section-heading">🎯 Especialidades</h3>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🔐</div>
+                <h4>Ciberseguridad Integral</h4>
+                <p>Especialización en protección de sistemas, análisis de vulnerabilidades y hardening de servidores</p>
+                <div class="skill-level">
+                    <div class="skill-bar" style="width: 85%"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">☁️</div>
+                <h4>Cloud Computing</h4>
+                <p>Experiencia con servicios AWS: EC2, Route 53, S3 y despliegue de aplicaciones en la nube</p>
+                <div class="skill-level">
+                    <div class="skill-bar" style="width: 78%"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h4>Redes & Sistemas</h4>
+                <p>Configuración de redes LAN/WAN, virtualización con VirtualBox y administración de servidores</p>
+                <div class="skill-level">
+                    <div class="skill-bar" style="width: 82%"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h4>Desarrollo Web</h4>
+                <p>HTML, CSS, JavaScript y desarrollo de aplicaciones web modernas y responsivas</p>
+                <div class="skill-level">
+                    <div class="skill-bar" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🐧</div>
+                <h4>Linux & Shell</h4>
+                <p>Administración de sistemas Linux, Apache, scripting en Bash y automatización</p>
+                <div class="skill-level">
+                    <div class="skill-bar" style="width: 80%"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h4>Herramientas DevOps</h4>
+                <p>Git, Docker, configuración de CI/CD y mejores prácticas de desarrollo</p>
+                <div class="skill-level">
+                    <div class="skill-bar" style="width: 70%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-section">
+        <h3 class="section-heading">📚 Mi Trayectoria</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>🎓 Estudiante de Ingeniería</h4>
+                    <p class="timeline-date">Actualidad</p>
+                    <p>Cursando Ingeniería en Sistemas Computacionales con especialidad en Ciberseguridad Integral</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>☁️ Proyectos Cloud</h4>
+                    <p class="timeline-date">2024</p>
+                    <p>Desarrollo de aplicaciones web desplegadas en AWS utilizando EC2, Route 53 y configuración HTTPS</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>🔧 Servidor Raspberry Pi</h4>
+                    <p class="timeline-date">2024</p>
+                    <p>Configuración de servidor web personal con Raspberry Pi, Apache y gestión de DNS dinámico</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>🌐 Redes Virtualizadas</h4>
+                    <p class="timeline-date">2023-2024</p>
+                    <p>Implementación de redes LAN virtualizadas con Windows Server y Ubuntu en VirtualBox</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Philosophy -->
+    <div class="philosophy-section">
+        <blockquote class="philosophy-quote">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Caminante no hay camino,<br>se hace camino al andar.</p>
+            <footer class="quote-author">— Antonio Machado</footer>
+        </blockquote>
+        <p class="philosophy-description">
+            Esta frase resume mi filosofía de aprendizaje: cada proyecto es una oportunidad 
+            para explorar nuevas tecnologías y crear mi propio camino en el mundo de la tecnología.
+        </p>
     </div>
 </div>
+
+<style>
+.about-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.about-hero {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    align-items: center;
+}
+
+.about-image-container {
+    position: relative;
+}
+
+.about-image {
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(99, 102, 241, 0.3);
+}
+
+.about-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #e2e8f0;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-subtitle {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+}
+
+/* Skills Section */
+.skills-section {
+    margin-bottom: 4rem;
+}
+
+.section-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #e2e8f0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: rgba(30, 41, 59, 0.5);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.skill-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.skill-card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.75rem;
+}
+
+.skill-card p {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.skill-level {
+    background: rgba(255, 255, 255, 0.05);
+    height: 8px;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.skill-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    transition: width 1s ease;
+}
+
+/* Timeline Section */
+.timeline-section {
+    margin-bottom: 4rem;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+.timeline-content {
+    background: rgba(30, 41, 59, 0.5);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateX(5px);
+}
+
+.timeline-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-date {
+    color: #6366f1;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+/* Philosophy Section */
+.philosophy-section {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    text-align: center;
+}
+
+.philosophy-quote {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.quote-mark {
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(99, 102, 241, 0.3);
+    margin-bottom: -1rem;
+}
+
+.quote-text {
+    font-size: 1.75rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #e2e8f0;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.quote-author {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.philosophy-description {
+    color: #cbd5e1;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        padding-left: 1.5rem;
+    }
+
+    .philosophy-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .quote-text {
+        font-size: 1.5rem;
+    }
+}
+</style>
