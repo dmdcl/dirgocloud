@@ -135,14 +135,18 @@
     });
   });
 
-  contactBtns.forEach(btn => {
-    btn.addEventListener('click', () => navigateTo('contact'));
-    btn.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        navigateTo('contact');
-      }
+contactBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita que la página brinque
+      navigateTo('contact');
     });
   });
+
+  /* ── Leer la URL al cargar ── */
+  // Si la URL tiene un # (ej. index.html#contact), abre esa pestaña automáticamente
+  const initialHash = window.location.hash.replace('#', '');
+  if (pageMap[initialHash]) {
+    navigateTo(initialHash);
+  }
 
 })();
