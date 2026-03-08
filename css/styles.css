@@ -222,6 +222,11 @@ p { margin: 0; }
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.35s ease;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 99;
 }
 
 .nav__mobile-menu.nav__mobile-menu--open {
@@ -794,7 +799,7 @@ p { margin: 0; }
     text-align: center;
   }
 
-  .home__social {
+  .home__redes {
     grid-column: 1;
     grid-row: 3;
     justify-content: center;
@@ -882,13 +887,13 @@ p { margin: 0; }
     height: 180px;
   }
 
-  .home__social-btn,
+  .home__redes-btn,
   .contact-page__link {
     width: 70px;
     height: 70px;
   }
 
-  .home__social-btn svg,
+  .home__redes-btn svg,
   .contact-page__link svg {
     width: 26px;
     height: 26px;
