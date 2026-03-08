@@ -902,7 +902,7 @@ p { margin: 0; }
     text-align: center;
   }
 
-    .home__redes {
+  .home__redes {
     grid-column: 1;
     grid-row: 3;
     justify-content: center;
@@ -920,10 +920,9 @@ p { margin: 0; }
     height: 26px;
   }
 
- .home__cv-btn {
-    grid-column: 1;
-    grid-row: 4;
-    align-self: center;
+  .home__cv-btn {
+    display: flex;
+    justify-content: center;
   }
 
   .home__cv-link {
