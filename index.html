@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DirgoCloud — Diego Martin del Campo</title>
+  <title>Dirgo Cloud</title>
+
+  <link rel="icon" type="image/png" href="img/lexa.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Anonymous+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
@@ -75,7 +78,7 @@
             <div class="home__avatar-col">
               <img
                 class="home__avatar"
-                src="https://www.figma.com/api/mcp/asset/858d67fb-05ce-4106-8081-4cc33c472771"
+                src="img/lexa.png"
                 alt="Fortnite — Lexa"
                 width="363"
                 height="359"
@@ -87,7 +90,7 @@
               <p id="home-heading" class="home__intro-text">
                 Hola,<br>
                 Mi nombre es Diego Martin del Campo<br>
-                y soy Ingeniero de Nube.
+                y soy Cloud Engineer.
               </p>
             </div>
 
@@ -95,7 +98,7 @@
             <div class="home__social" aria-label="Redes sociales">
               <a
                 class="home__social-btn"
-                href="https://github.com/"
+                href="https://github.com/dmdcl"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -106,7 +109,7 @@
               </a>
               <a
                 class="home__social-btn"
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/dmartindelc"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -117,23 +120,24 @@
               </a>
               <a
                 class="home__social-btn"
-                href="https://twitter.com/"
+                href="https://www.instagram.com/sabrinacarpenter"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter / X"
+                aria-label="Instagram"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
                 </svg>
               </a>
             </div>
 
             <!-- Download CV button -->
+            <!-- TODO: Add Curriculum lol -->
             <div class="home__cv-btn">
               <a
                 class="home__cv-link"
-                href="#"
-                download
+                href="docs/cv.png" 
+                download = "CV.pdf"
                 aria-label="Descargar CV"
               >
                 <span class="home__cv-text">DESCARGAR CV</span>
@@ -166,17 +170,16 @@
             <div class="about__p">
                 <p style="margin-bottom: 8px;">Cuento con las siguientes certificaciones:</p>
                 <ul style="margin-left: 24px; line-height: 1.6;">
-                        <li>AWS Cloud Practitioner</li>
-                        <li>AWS Solutions Architect Associate</li>
+                        <li>AWS Cloud Practitioner (CLF-C02)</li>
+                        <li>AWS Solutions Architect – Associate (SAA-C03)</li>
                         <li>Actualmente estudiando para LPIC 1</li>
                 </ul>
             </div>
-
-            <p id="about-heading" class="about__subtitle">Me gustan mucho los gatos</p>
+            </div><p id="about-heading" class="about__subtitle">Me gustan mucho los gatos<br></p>
 
             <div class="about__image-box">
               <img
-                src="https://www.figma.com/api/mcp/asset/858d67fb-05ce-4106-8081-4cc33c472771"
+                src="img/gato.jpeg"
                 alt="Gato"
                 width="302"
                 height="217"
@@ -206,23 +209,23 @@
             <ul class="projects__list" role="list">
               <li class="projects__item" role="listitem">
                 <span class="projects__item-number">01</span>
-                <a class="projects__item-text" href="projectos/projecto1.html">Projecto 1</a>
+                <a class="projects__item-text" href="projectos/projecto1.html">Infraestructura Serverless para un agente IA de automatización de procesos</a>
               </li>
               <li class="projects__item" role="listitem">
                 <span class="projects__item-number">02</span>
-                <a class="projects__item-text" href="paginas/projecto2.html">Projecto 2</a>
+                <a class="projects__item-text" href="projectos/projecto2.html">Dirgocloud en una RPI</a>
               </li>
               <li class="projects__item" role="listitem">
                 <span class="projects__item-number">03</span>
-                <a class="projects__item-text" href="paginas/projecto3.html">Projecto 3</a>
+                <a class="projects__item-text" href="projectos/projecto3.html">Herramienta de inventario en AWS</a>
               </li>
               <li class="projects__item" role="listitem">
                 <span class="projects__item-number">04</span>
-                <a class="projects__item-text" href="paginas/projecto4.html">Projecto 4</a>
+                <a class="projects__item-text" href="projectos/projecto4.html">Pipeline CI/CD para un despliegue de Docker en una EC2 Zero Trust</a>
               </li>
               <li class="projects__item" role="listitem">
                 <span class="projects__item-number">05</span>
-                <a class="projects__item-text" href="paginas/projecto5.html">Projecto 5</a>
+                <a class="projects__item-text" href="projectos/projecto5.html">Pipeline CI/CD para un despliegue de una app Vite en una S3</a>
               </li>
             </ul>
           </div>
@@ -249,27 +252,27 @@
               <a
                 class="cert-card"
                 role="listitem"
-                href="https://www.credly.com/badges/YOUR-BADGE-ID-SAA/public_url"
+                href="https://www.credly.com/badges/aaacb2c0-1ddb-42df-a03a-6d75a81ab758"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ver credencial AWS Solutions Architect – Associate en Credly"
               >
                 <h3 class="cert-card__title">AWS Solutions Architect – Associate (SAA-C03)</h3>
                 <p class="cert-card__issuer">Amazon Web Services</p>
-                <p class="cert-card__date">2024</p>
+                <p class="cert-card__date">2025</p>
               </a>
 
               <a
                 class="cert-card"
                 role="listitem"
-                href="https://www.credly.com/badges/YOUR-BADGE-ID-CLF/public_url"
+                href="https://www.credly.com/badges/862a6895-7c81-4da6-b1ab-51fe3bd1ad0b"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ver credencial AWS Cloud Practitioner en Credly"
               >
                 <h3 class="cert-card__title">AWS Cloud Practitioner (CLF-C02)</h3>
                 <p class="cert-card__issuer">Amazon Web Services</p>
-                <p class="cert-card__date">2024</p>
+                <p class="cert-card__date">2025</p>
               </a>
 
             </div>
@@ -287,6 +290,7 @@
 
 
     <!-- ─── CONTACTO ─── -->
+     <!-- ─── TODO: HERE IS GOING TO BE A SUBMIT EMAIL ─── -->
     <div id="page-contact" class="page" aria-label="Contacto">
       <section class="section" aria-labelledby="contact-heading">
         <div class="section__inner">
@@ -296,7 +300,7 @@
             <div class="contact-page__links" aria-label="Canales de contacto">
               <a
                 class="contact-page__link"
-                href="https://github.com/"
+                href="https://github.com/dmdcl"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -307,7 +311,7 @@
               </a>
               <a
                 class="contact-page__link"
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/dmartindelc"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
