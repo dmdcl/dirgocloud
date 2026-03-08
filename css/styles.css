@@ -880,11 +880,32 @@ p { margin: 0; }
 
   .home {
     padding-top: 32px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
   }
 
   .home__avatar {
     width: 180px;
     height: 180px;
+  }
+
+  .home__avatar-col {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .home__intro {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+  }
+
+    .home__redes {
+    grid-column: 1;
+    grid-row: 3;
+    justify-content: center;
   }
 
   .home__redes-btn,
@@ -897,6 +918,12 @@ p { margin: 0; }
   .contact-page__link svg {
     width: 26px;
     height: 26px;
+  }
+
+ .home__cv-btn {
+    grid-column: 1;
+    grid-row: 4;
+    align-self: center;
   }
 
   .home__cv-link {
