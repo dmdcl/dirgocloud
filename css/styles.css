@@ -922,7 +922,7 @@ p { margin: 0; }
 
   .home__cv-btn {
     display: flex;
-    justify-content: center;
+    justify-self: center;
   }
 
   .home__cv-link {
