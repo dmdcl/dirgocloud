@@ -346,7 +346,7 @@ p { margin: 0; }
   font-weight: 400;
 }
 
-.home__social {
+.home__redes {
   grid-column: 2;
   grid-row: 2;
   display: flex;
@@ -355,7 +355,7 @@ p { margin: 0; }
   padding-top: var(--sp-4);
 }
 
-.home__social-btn {
+.home__redes-btn {
   width: 95px;
   height: 95px;
   border-radius: 50%;
@@ -369,12 +369,12 @@ p { margin: 0; }
   text-decoration: none;
 }
 
-.home__social-btn:hover {
+.home__redes-btn:hover {
   background-color: #222;
   transform: scale(1.05);
 }
 
-.home__social-btn svg {
+.home__redes-btn svg {
   width: 36px;
   height: 36px;
   fill: var(--color-yellow);
