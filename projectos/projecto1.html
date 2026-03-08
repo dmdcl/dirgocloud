@@ -26,20 +26,19 @@
     <div class="nav__spacer" aria-hidden="true"></div>
 
     <ul class="nav__links" role="list">
+      <li class="nav__item" role="listitem">
+        <a class="nav__link" href="../index.html#home">INICIO</a>
+      </li>
+      <li class="nav__item" role="listitem">
+        <a class="nav__link" href="../index.html#about">ACERCA DE MI</a>
+      </li>
       <li class="nav__item nav__item--active" role="listitem">
-        <span class="nav__link" role="button" tabindex="0" data-target="home">INICIO</span>
+        <a class="nav__link" href="../index.html#projects">PROJECTOS</a>
       </li>
       <li class="nav__item" role="listitem">
-        <span class="nav__link" role="button" tabindex="0" data-target="about">ACERCA DE MI</span>
-      </li>
-      <li class="nav__item" role="listitem">
-        <span class="nav__link" role="button" tabindex="0" data-target="projects">PROJECTOS</span>
-      </li>
-      <li class="nav__item" role="listitem">
-        <span class="nav__link" role="button" tabindex="0" data-target="certs">CERTS</span>
+        <a class="nav__link" href="../index.html#certs">CERTS</a>
       </li>
     </ul>
-
     <!-- Hamburger (tablet/mobile) -->
     <button
       class="nav__hamburger"
@@ -56,11 +55,11 @@
 
   <!-- Mobile dropdown menu -->
   <div class="nav__mobile-menu" id="mobile-menu" aria-hidden="true" role="menu">
-    <div class="nav__mobile-item nav__mobile-item--active" role="menuitem" tabindex="0" data-target="home">INICIO</div>
-    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="about">ACERCA DE MI</div>
-    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="projects">PROJECTOS</div>
-    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="certs">CERTS</div>
-    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="contact">CONTACTO</div>
+    <div class="nav__mobile-item" role="menuitem" tabindex="0" onclick="location.href='../index.html#home'">INICIO</div>
+    <div class="nav__mobile-item" role="menuitem" tabindex="0" onclick="location.href='../index.html#about'">ACERCA DE MI</div>
+    <div class="nav__mobile-item nav__mobile-item--active" role="menuitem" tabindex="0" onclick="location.href='../index.html#projects'">PROJECTOS</div>
+    <div class="nav__mobile-item" role="menuitem" tabindex="0" onclick="location.href='../index.html#certs'">CERTS</div>
+    <div class="nav__mobile-item" role="menuitem" tabindex="0" onclick="location.href='../index.html#contact'">CONTACTO</div>
   </div>
 
   <main class="project-page">
