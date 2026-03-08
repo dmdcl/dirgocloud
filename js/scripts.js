@@ -1,74 +1,148 @@
-function openTab(tabName, element) {
-    // Ocultar todos los contenidos
-    document.querySelectorAll('.tabcontent').forEach(content => {
-        content.style.display = 'none';
-        // No limpiar el contenido del home para que persista
-        if (content.id !== 'home') {
-            content.innerHTML = '';
-        }
-    });
-    
-    // Desactivar todos los botones
-    document.querySelectorAll('.tablink').forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    // Activar el botón seleccionado
-    element.classList.add('active');
-    
-    // Mostrar el contenido adecuado
-    const tabContent = document.getElementById(tabName);
-    tabContent.style.display = 'block';
-    
-    // Cargar contenido externo solo si no es la pestaña de inicio
-    if (tabName !== 'home') {
-        loadExternalContent(tabName);
-    }
-}
+(function () {
+  'use strict';
 
-function loadExternalContent(tabName) {
-    const contentDiv = document.getElementById(tabName);
-    const contentFile = `paginas/${tabName}.html`;
-    
-    fetch(contentFile)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Página no encontrada');
-            }
-            return response.text();
-        })
-        .then(html => {
-            contentDiv.innerHTML = `<div class="loaded-content">${html}</div>`;
-        })
-        .catch(error => {
-            contentDiv.innerHTML = `
-                <div class="loaded-content error">
-                    <h3>Error al cargar el contenido</h3>
-                    <p>${error.message}</p>
-                </div>
-            `;
-        });
-}
+  /* ── Elementos globales ── */
+  const hamburgerBtn  = document.getElementById('hamburger-btn');
+  const mobileMenu    = document.getElementById('mobile-menu');
 
-// Inicializar - Mostrar solo la pestaña de inicio al cargar
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('home').style.display = 'block';
-    document.querySelector('.tablink').classList.add('active');
-});
-document.addEventListener('DOMContentLoaded', function() {
-    // Verificar que todas las tarjetas existen
-    const cards = document.querySelectorAll('.social-card');
-    console.log(`Tarjetas encontradas: ${cards.length}`);
-    
-    // Forzar visualización si hay algún problema
-    cards.forEach(card => {
-        card.style.display = 'flex';
-    });
-    
-    // Verificar dimensiones del contenedor
-    const container = document.querySelector('.social-cards-container');
-    if (container) {
-        console.log('Ancho del contenedor:', container.offsetWidth);
-        console.log('Estilos aplicados:', window.getComputedStyle(container).display);
+  /* ─────────────────────────────────────────
+     LÓGICA DEL MENÚ MÓVIL (Corre en todas las páginas)
+  ───────────────────────────────────────── */
+  function toggleMobileMenu() {
+    if (!mobileMenu || !hamburgerBtn) return;
+    const isOpen = mobileMenu.classList.contains('nav__mobile-menu--open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      mobileMenu.classList.add('nav__mobile-menu--open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
     }
-});
+  }
+
+  function closeMobileMenu() {
+    if (!mobileMenu || !hamburgerBtn) return;
+    mobileMenu.classList.remove('nav__mobile-menu--open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+  }
+
+  // Cerrar menú al hacer clic afuera
+  document.addEventListener('click', function (e) {
+    if (
+      mobileMenu && 
+      hamburgerBtn && 
+      !mobileMenu.contains(e.target) &&
+      !hamburgerBtn.contains(e.target) &&
+      mobileMenu.classList.contains('nav__mobile-menu--open')
+    ) {
+      closeMobileMenu();
+    }
+  });
+
+  // Cerrar menú con la tecla Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+    }
+  });
+
+  /* ─────────────────────────────────────────
+     LÓGICA SPA (Solo corre en el index.html)
+  ───────────────────────────────────────── */
+  
+  const pageHome = document.getElementById('page-home');
+  
+  // Si no existe 'page-home', estamos en una página de proyecto. 
+  // Detenemos la ejecución aquí para evitar errores.
+  if (!pageHome) return; 
+
+  const pageMap = {
+    home:     pageHome,
+    about:    document.getElementById('page-about'),
+    projects: document.getElementById('page-projects'),
+    certs:    document.getElementById('page-certs'),
+    contact:  document.getElementById('page-contact'),
+  };
+
+  const navItems      = document.querySelectorAll('.nav__item');
+  const navLinks      = document.querySelectorAll('.nav__link[data-target]');
+  const mobileItems   = document.querySelectorAll('.nav__mobile-item');
+  const contactBtns   = document.querySelectorAll('.contact-bar__btn');
+  const logoBtn       = document.querySelector('.nav__logo');
+
+  let currentPage = 'home';
+
+  function navigateTo(target) {
+    if (!pageMap[target]) return;
+
+    // Ocultar actual, mostrar nuevo
+    Object.values(pageMap).forEach(el => {
+      if(el) el.classList.remove('page--active');
+    });
+    pageMap[target].classList.add('page--active');
+
+    // Actualizar estados del menú desktop
+    navItems.forEach(item => item.classList.remove('nav__item--active'));
+    navLinks.forEach(link => {
+      if (link.dataset.target === target) {
+        link.closest('.nav__item').classList.add('nav__item--active');
+      }
+    });
+
+    // Actualizar estados del menú móvil
+    mobileItems.forEach(item => {
+      item.classList.toggle('nav__mobile-item--active', item.dataset.target === target);
+    });
+
+    closeMobileMenu();
+    currentPage = target;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Event Listeners para el index.html
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => navigateTo(link.dataset.target));
+    link.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navigateTo(link.dataset.target);
+      }
+    });
+  });
+
+  if (logoBtn) {
+    logoBtn.addEventListener('click', () => navigateTo('home'));
+    logoBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navigateTo('home');
+      }
+    });
+  }
+
+  mobileItems.forEach(item => {
+    item.addEventListener('click', () => navigateTo(item.dataset.target));
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navigateTo(item.dataset.target);
+      }
+    });
+  });
+
+  contactBtns.forEach(btn => {
+    btn.addEventListener('click', () => navigateTo('contact'));
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navigateTo('contact');
+      }
+    });
+  });
+
+})();
