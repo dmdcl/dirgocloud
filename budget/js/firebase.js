@@ -7,7 +7,11 @@ import { firebaseConfig } from '../../js/firebase-config.js';
 
 export const usingEmulators = ['localhost', '127.0.0.1'].includes(location.hostname);
 
-export const app = initializeApp(firebaseConfig);
+// En local, siempre el proyecto demo- de los emuladores (firebase/.firebaserc),
+// aunque firebase-config.js tenga el proyecto real.
+export const app = initializeApp(
+  usingEmulators ? { ...firebaseConfig, projectId: 'demo-dirgocloud' } : firebaseConfig,
+);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
