@@ -1,0 +1,39 @@
+/* ─────────────────────────────────────────
+   BUDGET APP (/budget/)
+   Loaded after ../css/styles.css: reuses its tokens, fonts and .nav.
+───────────────────────────────────────── */
+.budget__inner {
+  max-width: var(--container-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--sp-5);
+}
+
+.budget__title {
+  font-family: var(--font-poppins);
+  font-size: var(--fs-hero);
+  color: var(--color-heading);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.budget__text {
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-top: var(--sp-2);
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — TABLET (max-width: 1024px)
+───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .budget__inner { padding: var(--sp-4) var(--sp-3); }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — MOBILE (max-width: 768px)
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .budget__inner { padding: var(--sp-3) var(--sp-2); }
+}

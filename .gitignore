@@ -1,2 +1,5 @@
 # ignore .md
 *.md
+
+# Firebase emulator logs
+*-debug.log
