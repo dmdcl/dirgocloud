@@ -37,8 +37,21 @@
 
   <main>
     <div class="budget__inner">
-      <h1 class="budget__title">Presupuesto</h1>
-      <p class="budget__text" id="budget-status" role="status">Cargando…</p>
+      <!-- Guardia: js/app.js muestra solo los [data-auth] del estado de sesión actual -->
+      <p class="budget__text" data-auth="loading" role="status">Cargando…</p>
+
+      <section data-auth="out" hidden aria-labelledby="login-title">
+        <h1 class="budget__title" id="login-title">Presupuesto</h1>
+        <p class="budget__text">Inicia sesión con tu cuenta de Google para continuar.</p>
+        <button class="budget__btn" id="signin-btn" type="button">ENTRAR CON GOOGLE</button>
+        <p class="budget__error" id="signin-error" role="alert" hidden></p>
+      </section>
+
+      <section data-auth="in" hidden aria-labelledby="app-title">
+        <h1 class="budget__title" id="app-title">Presupuesto</h1>
+        <p class="budget__text">Sesión iniciada como <strong id="user-email"></strong>.</p>
+        <button class="budget__btn" id="signout-btn" type="button">CERRAR SESIÓN</button>
+      </section>
     </div>
   </main>
 
