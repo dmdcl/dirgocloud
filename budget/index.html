@@ -52,6 +52,46 @@
         <h1 class="budget__title" id="app-title">Presupuesto</h1>
         <p class="budget__text">Sesión iniciada como <strong id="user-email"></strong>.</p>
         <button class="budget__btn" id="signout-btn" type="button">CERRAR SESIÓN</button>
+
+        <!-- Movimientos del mes: js/transactions.js -->
+        <div class="tx__month">
+          <button class="budget__btn tx__nav" id="month-prev" type="button" aria-label="Mes anterior">&lsaquo;</button>
+          <input class="tx__input" id="month-input" type="month" aria-label="Mes" required />
+          <button class="budget__btn tx__nav" id="month-next" type="button" aria-label="Mes siguiente">&rsaquo;</button>
+        </div>
+
+        <dl class="tx__totals">
+          <div><dt>INGRESOS</dt><dd id="total-income"></dd></div>
+          <div><dt>GASTOS</dt><dd id="total-expense"></dd></div>
+          <div><dt>BALANCE</dt><dd id="total-net"></dd></div>
+        </dl>
+
+        <form class="tx__form" id="tx-form" novalidate>
+          <h2 class="tx__subtitle" id="tx-form-title">NUEVO MOVIMIENTO</h2>
+          <label class="tx__field">FECHA
+            <input class="tx__input" name="date" type="date" required />
+          </label>
+          <label class="tx__field">TIPO
+            <select class="tx__input" name="type">
+              <option value="expense" selected>Gasto</option>
+              <option value="income">Ingreso</option>
+            </select>
+          </label>
+          <label class="tx__field">MONTO (MXN)
+            <input class="tx__input" name="amount" type="text" inputmode="decimal" placeholder="0.00" required />
+          </label>
+          <label class="tx__field tx__field--wide">DESCRIPCIÓN
+            <input class="tx__input" name="description" type="text" maxlength="200" />
+          </label>
+          <div class="tx__actions">
+            <button class="budget__btn" type="submit" id="tx-submit">AGREGAR</button>
+            <button class="budget__btn" type="button" id="tx-cancel" hidden>CANCELAR</button>
+          </div>
+        </form>
+
+        <p class="budget__error" id="tx-error" role="alert" hidden></p>
+        <p class="budget__text" id="tx-empty" hidden>No hay movimientos en este mes.</p>
+        <ul class="tx__list" id="tx-list"></ul>
       </section>
     </div>
   </main>

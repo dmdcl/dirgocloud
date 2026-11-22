@@ -1,5 +1,11 @@
 rules_version = '2';
 
+// Deploy (by hand, the user runs it; there is no CI deploy yet). From the app
+// repo's firebase/ folder, signed in with `firebase login`:
+//   firebase deploy --only firestore:rules --project dirgo-cloud-app-1
+// The --project flag is required: .firebaserc defaults to the emulators'
+// demo-dirgocloud project. Run `npm test` first.
+
 // Budget app (/budget/). All data lives under users/{uid}:
 //   transactions/{id}: date 'YYYY-MM-DD', type 'expense' | 'income',
 //     amount (int, MXN cents, > 0), categoryId (string or null, optional),

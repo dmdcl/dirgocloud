@@ -1,6 +1,9 @@
 // Punto de entrada de /budget/. Guardia de sesión: hasta saber el estado de la
 // sesión solo se ve "Cargando…"; sin sesión, solo el login.
 import { onUserChanged, signInWithGoogle, signOut } from './auth.js';
+import { db } from './firebase.js';
+import { createFirestoreRepository } from './firestore-repository.js';
+import { startTransactions, stopTransactions } from './transactions.js';
 
 const signinBtn = document.getElementById('signin-btn');
 const signoutBtn = document.getElementById('signout-btn');
@@ -17,6 +20,8 @@ function render(state) {
 onUserChanged((user) => {
   signinError.hidden = true;
   userEmail.textContent = user ? user.email ?? user.uid : '';
+  if (user) startTransactions(createFirestoreRepository(db, user.uid));
+  else stopTransactions();
   render(user ? 'in' : 'out');
 });
 
