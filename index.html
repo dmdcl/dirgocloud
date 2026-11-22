@@ -33,7 +33,7 @@
         <span class="nav__link" role="button" tabindex="0" data-target="about">ACERCA DE MI</span>
       </li>
       <li class="nav__item" role="listitem">
-        <span class="nav__link" role="button" tabindex="0" data-target="projects">PROJECTOS</span>
+        <span class="nav__link" role="button" tabindex="0" data-target="projects">PROYECTOS</span>
       </li>
       <li class="nav__item" role="listitem">
         <span class="nav__link" role="button" tabindex="0" data-target="certs">CERTS</span>
@@ -62,7 +62,7 @@
   <div class="nav__mobile-menu" id="mobile-menu" aria-hidden="true" role="menu">
     <div class="nav__mobile-item nav__mobile-item--active" role="menuitem" tabindex="0" data-target="home">INICIO</div>
     <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="about">ACERCA DE MI</div>
-    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="projects">PROJECTOS</div>
+    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="projects">PROYECTOS</div>
     <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="certs">CERTS</div>
     <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="contact">CONTACTO</div>
     <a class="nav__mobile-item" role="menuitem" href="budget/">PRESUPUESTO</a>
@@ -204,14 +204,22 @@
     </div><!-- /#page-about -->
 
 
-    <!-- ─── PROJECTOS ─── -->
+    <!-- ─── PROYECTOS ─── -->
     <div id="page-projects" class="page" aria-label="Proyectos">
       <section class="section" aria-labelledby="projects-heading">
         <div class="section__inner">
           <div class="projects">
             <h2 id="projects-heading" class="sr-only">Proyectos</h2>
 
-            <!-- Sin proyectos publicados por ahora: lista vacía a propósito (pendiente de decidir). -->
+            <ul class="projects__list" role="list">
+              <li class="projects__item" role="listitem">
+                <span class="projects__item-number">01</span>
+                <div class="projects__item-body">
+                  <a class="projects__item-text" href="budget/">Presupuesto personal</a>
+                  <p class="projects__item-desc">App web para registrar ingresos y gastos por mes. Inicio de sesión con Google (Firebase Auth) y datos en Firestore, protegidos con reglas de seguridad por usuario. Hecha con JavaScript vanilla y módulos ES, sin frameworks.</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </section>

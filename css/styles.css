@@ -500,7 +500,7 @@ a.nav__link {
 }
 
 /* ─────────────────────────────────────────
-   PROJECTOS SECTION
+   PROYECTOS SECTION
 ───────────────────────────────────────── */
 .projects {
   padding-top: 90px;
@@ -551,6 +551,20 @@ a.nav__link {
   text-decoration: none;
   line-height: 1.4;
   flex: 1;
+}
+
+.projects__item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.projects__item-desc {
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 1.6;
 }
 
 .projects__item-number {
