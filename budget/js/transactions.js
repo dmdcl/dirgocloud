@@ -2,7 +2,7 @@
 // Solo habla con un Repository (repository.js), nunca con Firestore directo.
 
 const $ = (id) => document.getElementById(id);
-const monthInput = $('month-input');
+const monthLabel = $('month-label');
 const form = $('tx-form');
 const formTitle = $('tx-form-title');
 const submitBtn = $('tx-submit');
@@ -13,17 +13,19 @@ const list = $('tx-list');
 const totals = { income: $('total-income'), expense: $('total-expense'), net: $('total-net') };
 
 const money = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' });
+const monthName = new Intl.DateTimeFormat('es-MX', { month: 'long', year: 'numeric' });
 const MAX_CENTS = 100000000000; // Mismo límite que firestore.rules.
 
 /** @type {import('./repository.js').Repository | null} */
 let repo = null;
 let editingId = null;
+let month = ''; // Mes visible, 'YYYY-MM'.
 let loadSeq = 0; // Descarta respuestas de meses que ya no se ven.
 
 /** @param {import('./repository.js').Repository} repository */
 export function startTransactions(repository) {
   repo = repository;
-  monthInput.value = today().slice(0, 7);
+  setMonth(today().slice(0, 7));
   resetForm();
   load();
 }
@@ -42,8 +44,17 @@ function today() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
-function shiftMonth(month, delta) {
-  const [y, m] = month.split('-').map(Number);
+// Etiqueta en español sin depender del idioma del navegador: 'Noviembre de 2026'.
+function setMonth(value) {
+  month = value;
+  const [y, m] = value.split('-').map(Number);
+  const label = monthName.format(new Date(y, m - 1, 1));
+  monthLabel.textContent = label.charAt(0).toUpperCase() + label.slice(1);
+  monthLabel.dataset.month = value;
+}
+
+function shiftMonth(value, delta) {
+  const [y, m] = value.split('-').map(Number);
   const d = new Date(y, m - 1 + delta, 1);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 }
@@ -64,7 +75,6 @@ function showError(message) {
 function resetForm() {
   editingId = null;
   form.reset();
-  const month = monthInput.value;
   form.elements.date.value = !month || today().startsWith(month) ? today() : `${month}-01`;
   formTitle.textContent = 'NUEVO MOVIMIENTO';
   submitBtn.textContent = 'AGREGAR';
@@ -72,10 +82,10 @@ function resetForm() {
 }
 
 async function load() {
-  if (!repo || !monthInput.value) return;
+  if (!repo || !month) return;
   const seq = ++loadSeq;
   try {
-    const items = await repo.listTransactions(monthInput.value);
+    const items = await repo.listTransactions(month);
     if (seq === loadSeq) render(items);
   } catch (err) {
     console.error(err);
@@ -166,7 +176,7 @@ form.addEventListener('submit', async (e) => {
   try {
     if (editingId) await repo.updateTransaction(editingId, data);
     else await repo.addTransaction(data);
-    monthInput.value = data.date.slice(0, 7); // Muestra el mes del movimiento guardado.
+    setMonth(data.date.slice(0, 7)); // Muestra el mes del movimiento guardado.
     resetForm();
     await load();
   } catch (err) {
@@ -179,13 +189,12 @@ form.addEventListener('submit', async (e) => {
 
 cancelBtn.addEventListener('click', () => { resetForm(); showError(''); });
 
-function changeMonth(month) {
-  monthInput.value = month;
+function changeMonth(value) {
+  setMonth(value);
   if (!editingId) resetForm();
   showError('');
   load();
 }
 
-$('month-prev').addEventListener('click', () => changeMonth(shiftMonth(monthInput.value || today().slice(0, 7), -1)));
-$('month-next').addEventListener('click', () => changeMonth(shiftMonth(monthInput.value || today().slice(0, 7), 1)));
-monthInput.addEventListener('change', () => { if (monthInput.value) changeMonth(monthInput.value); });
+$('month-prev').addEventListener('click', () => changeMonth(shiftMonth(month, -1)));
+$('month-next').addEventListener('click', () => changeMonth(shiftMonth(month, 1)));
