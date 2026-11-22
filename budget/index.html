@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Presupuesto | Dirgo Cloud</title>
+
+  <link rel="icon" type="image/png" href="../img/weblogo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Oswald:wght@400;700&family=Anonymous+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/budget.css" />
+
+  <!-- Firebase JS SDK (modular) desde el CDN. La versión se fija solo aquí. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js",
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js"
+      }
+    }
+  </script>
+  <script type="module" src="js/app.js"></script>
+</head>
+
+<body class="budget">
+
+  <nav class="nav" aria-label="Navegación principal">
+    <a class="nav__logo" href="../index.html">
+      <span class="nav__logo-text">DIRGO CLOUD</span>
+    </a>
+    <div class="nav__spacer" aria-hidden="true"></div>
+    <div class="budget__session" data-auth="in" hidden>
+      <span class="budget__user" id="user-email"></span>
+      <button class="budget__signout" id="signout-btn" type="button">CERRAR SESIÓN</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="budget__inner">
+      <!-- Guardia: js/app.js muestra solo los [data-auth] del estado de sesión actual -->
+      <p class="budget__text" data-auth="loading" role="status">Cargando…</p>
+
+      <section data-auth="out" hidden aria-labelledby="login-title">
+        <h1 class="budget__title" id="login-title">Presupuesto</h1>
+        <p class="budget__text">Inicia sesión con tu cuenta de Google para continuar.</p>
+        <button class="budget__btn" id="signin-btn" type="button">ENTRAR CON GOOGLE</button>
+        <p class="budget__error" id="signin-error" role="alert" hidden></p>
+      </section>
+
+      <section data-auth="in" hidden aria-labelledby="app-title">
+        <!-- Movimientos del mes: js/transactions.js -->
+        <div class="budget__head">
+          <h1 class="budget__title" id="app-title">Presupuesto</h1>
+          <div class="tx__month">
+            <button class="budget__btn tx__nav" id="month-prev" type="button" aria-label="Mes anterior">&lsaquo;</button>
+            <span class="tx__month-label" id="month-label" aria-live="polite"></span>
+            <button class="budget__btn tx__nav" id="month-next" type="button" aria-label="Mes siguiente">&rsaquo;</button>
+          </div>
+        </div>
+
+        <dl class="tx__totals">
+          <div><dt>INGRESOS</dt><dd id="total-income"></dd></div>
+          <div><dt>GASTOS</dt><dd id="total-expense"></dd></div>
+          <div><dt>BALANCE</dt><dd id="total-net"></dd></div>
+        </dl>
+
+        <div class="tx__layout">
+          <form class="tx__form" id="tx-form" novalidate>
+            <h2 class="tx__subtitle" id="tx-form-title">NUEVO MOVIMIENTO</h2>
+            <label class="tx__field">FECHA
+              <input class="tx__input" name="date" type="date" required />
+            </label>
+            <label class="tx__field">TIPO
+              <select class="tx__input" name="type">
+                <option value="expense" selected>Gasto</option>
+                <option value="income">Ingreso</option>
+              </select>
+            </label>
+            <label class="tx__field">MONTO (MXN)
+              <input class="tx__input" name="amount" type="text" inputmode="decimal" placeholder="0.00" required />
+            </label>
+            <label class="tx__field tx__field--wide">DESCRIPCIÓN
+              <input class="tx__input" name="description" type="text" maxlength="200" />
+            </label>
+            <div class="tx__actions">
+              <button class="budget__btn" type="submit" id="tx-submit">AGREGAR</button>
+              <button class="budget__btn" type="button" id="tx-cancel" hidden>CANCELAR</button>
+            </div>
+            <p class="budget__error tx__error" id="tx-error" role="alert" hidden></p>
+          </form>
+
+          <div class="tx__main">
+            <p class="budget__text" id="tx-empty" hidden>No hay movimientos en este mes.</p>
+            <ul class="tx__list" id="tx-list"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>

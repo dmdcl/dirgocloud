@@ -1,0 +1,66 @@
+rules_version = '2';
+
+// Deploy (by hand, the user runs it; there is no CI deploy yet). From the app
+// repo's firebase/ folder, signed in with `firebase login`:
+//   firebase deploy --only firestore:rules --project dirgo-cloud-app-1
+// The --project flag is required: .firebaserc defaults to the emulators'
+// demo-dirgocloud project. Run `npm test` first.
+
+// Budget app (/budget/). All data lives under users/{uid}:
+//   transactions/{id}: date 'YYYY-MM-DD', type 'expense' | 'income',
+//     amount (int, MXN cents, > 0), categoryId (string or null, optional),
+//     description (string up to 200 chars, optional)
+//   categories/{id}: name (1-40 chars), type 'expense' | 'income',
+//     budget (int, MXN cents, >= 0): monthly limit, same every month; 0 = none
+// Only the signed-in owner can read or write their documents. Everything
+// else (including the users/{uid} document itself) is denied.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function isEntryType(value) {
+      return value in ['expense', 'income'];
+    }
+
+    // Whole MXN cents between min and 1,000,000,000.00.
+    function isCents(value, min) {
+      return value is int && value >= min && value <= 100000000000;
+    }
+
+    function isTransaction(d) {
+      return d.keys().hasAll(['date', 'type', 'amount'])
+        && d.keys().hasOnly(['date', 'type', 'amount', 'categoryId', 'description'])
+        && d.date is string
+        && d.date.matches('^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$')
+        && isEntryType(d.type)
+        && isCents(d.amount, 1)
+        && (d.get('categoryId', null) == null
+          || (d.categoryId is string && d.categoryId.size() > 0 && d.categoryId.size() <= 128))
+        && d.get('description', '') is string
+        && d.get('description', '').size() <= 200;
+    }
+
+    function isCategory(d) {
+      return d.keys().hasAll(['name', 'type', 'budget'])
+        && d.keys().hasOnly(['name', 'type', 'budget'])
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 40
+        && isEntryType(d.type)
+        && isCents(d.budget, 0);
+    }
+
+    match /users/{uid} {
+      match /transactions/{id} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && isTransaction(request.resource.data);
+      }
+
+      match /categories/{id} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && isCategory(request.resource.data);
+      }
+    }
+  }
+}

@@ -1,2 +1,8 @@
 # ignore .md
 *.md
+
+# Firebase emulator logs
+*-debug.log
+
+# Dev-only test dependencies (firebase/)
+node_modules/
