@@ -33,10 +33,14 @@
         <span class="nav__link" role="button" tabindex="0" data-target="about">ACERCA DE MI</span>
       </li>
       <li class="nav__item" role="listitem">
-        <span class="nav__link" role="button" tabindex="0" data-target="projects">PROJECTOS</span>
+        <span class="nav__link" role="button" tabindex="0" data-target="projects">PROYECTOS</span>
       </li>
       <li class="nav__item" role="listitem">
         <span class="nav__link" role="button" tabindex="0" data-target="certs">CERTS</span>
+      </li>
+      <!-- Enlace normal (sin data-target): sale del SPA hacia la app -->
+      <li class="nav__item" role="listitem">
+        <a class="nav__link" href="budget/">PRESUPUESTO</a>
       </li>
     </ul>
 
@@ -58,9 +62,10 @@
   <div class="nav__mobile-menu" id="mobile-menu" aria-hidden="true" role="menu">
     <div class="nav__mobile-item nav__mobile-item--active" role="menuitem" tabindex="0" data-target="home">INICIO</div>
     <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="about">ACERCA DE MI</div>
-    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="projects">PROJECTOS</div>
+    <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="projects">PROYECTOS</div>
     <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="certs">CERTS</div>
     <div class="nav__mobile-item" role="menuitem" tabindex="0" data-target="contact">CONTACTO</div>
+    <a class="nav__mobile-item" role="menuitem" href="budget/">PRESUPUESTO</a>
   </div>
 
   <!-- ═══════════════════════════════════════
@@ -199,7 +204,7 @@
     </div><!-- /#page-about -->
 
 
-    <!-- ─── PROJECTOS ─── -->
+    <!-- ─── PROYECTOS ─── -->
     <div id="page-projects" class="page" aria-label="Proyectos">
       <section class="section" aria-labelledby="projects-heading">
         <div class="section__inner">
@@ -209,23 +214,10 @@
             <ul class="projects__list" role="list">
               <li class="projects__item" role="listitem">
                 <span class="projects__item-number">01</span>
-                <a class="projects__item-text" href="projectos/projecto1.html">Infraestructura Serverless para un agente IA de automatización de procesos</a>
-              </li>
-              <li class="projects__item" role="listitem">
-                <span class="projects__item-number">02</span>
-                <a class="projects__item-text" href="projectos/projecto2.html">Dirgocloud en una RPI</a>
-              </li>
-              <li class="projects__item" role="listitem">
-                <span class="projects__item-number">03</span>
-                <a class="projects__item-text" href="projectos/projecto3.html">Herramienta de inventario en AWS</a>
-              </li>
-              <li class="projects__item" role="listitem">
-                <span class="projects__item-number">04</span>
-                <a class="projects__item-text" href="projectos/projecto4.html">Pipeline CI/CD para un despliegue de Docker en una EC2 Zero Trust</a>
-              </li>
-              <li class="projects__item" role="listitem">
-                <span class="projects__item-number">05</span>
-                <a class="projects__item-text" href="projectos/projecto5.html">Pipeline CI/CD para un despliegue de una app Vite en una S3</a>
+                <div class="projects__item-body">
+                  <a class="projects__item-text" href="budget/">Presupuesto personal</a>
+                  <p class="projects__item-desc">App web para registrar ingresos y gastos por mes. Inicio de sesión con Google (Firebase Auth) y datos en Firestore, protegidos con reglas de seguridad por usuario. Hecha con JavaScript vanilla y módulos ES, sin frameworks.</p>
+                </div>
               </li>
             </ul>
           </div>
