@@ -4,7 +4,8 @@ rules_version = '2';
 // repo's firebase/ folder, signed in with `firebase login`:
 //   firebase deploy --only firestore:rules --project dirgo-cloud-app-1
 // The --project flag is required: .firebaserc defaults to the emulators'
-// demo-dirgocloud project. Run `npm test` first.
+// demo-dirgocloud project. Run `npm test` first. Create your allowlist/{uid}
+// document in the console BEFORE deploying, or you lock yourself out.
 
 // Budget app (/budget/). All data lives under users/{uid}:
 //   transactions/{id}: date 'YYYY-MM-DD', type 'expense' | 'income',
@@ -12,13 +13,26 @@ rules_version = '2';
 //     description (string up to 200 chars, optional)
 //   categories/{id}: name (1-40 chars), type 'expense' | 'income',
 //     budget (int, MXN cents, >= 0): monthly limit, same every month; 0 = none
-// Only the signed-in owner can read or write their documents. Everything
-// else (including the users/{uid} document itself) is denied.
+// Only the signed-in owner can read or write their documents, and only if
+// their UID is on the allowlist: allowlist/{uid} exists. The allowlist is
+// managed by hand in the console (or the emulator seed script); clients can
+// never read or write it. Everything else (including the users/{uid}
+// document itself) is denied.
 service cloud.firestore {
   match /databases/{database}/documents {
 
     function isOwner(uid) {
       return request.auth != null && request.auth.uid == uid;
+    }
+
+    // allowlist/{uid}: no match below allows it, so clients can't touch it.
+    function isAllowed() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/allowlist/$(request.auth.uid));
+    }
+
+    function canAccess(uid) {
+      return isOwner(uid) && isAllowed();
     }
 
     function isEntryType(value) {
@@ -53,13 +67,13 @@ service cloud.firestore {
 
     match /users/{uid} {
       match /transactions/{id} {
-        allow read, delete: if isOwner(uid);
-        allow create, update: if isOwner(uid) && isTransaction(request.resource.data);
+        allow read, delete: if canAccess(uid);
+        allow create, update: if canAccess(uid) && isTransaction(request.resource.data);
       }
 
       match /categories/{id} {
-        allow read, delete: if isOwner(uid);
-        allow create, update: if isOwner(uid) && isCategory(request.resource.data);
+        allow read, delete: if canAccess(uid);
+        allow create, update: if canAccess(uid) && isCategory(request.resource.data);
       }
     }
   }

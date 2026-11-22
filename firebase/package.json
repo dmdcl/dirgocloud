@@ -1,10 +1,11 @@
 {
   "name": "dirgocloud-firebase",
   "private": true,
-  "description": "Dev-only: Firestore rules tests for the budget app. The site does not use this.",
+  "description": "Dev-only: Firestore rules tests and the emulator allowlist seed for the budget app. The site does not use this.",
   "type": "module",
   "scripts": {
-    "test": "firebase emulators:exec --only firestore \"$(command -v node) --test tests/*.test.js\""
+    "test": "firebase emulators:exec --only firestore \"$(command -v node) --test tests/*.test.js\"",
+    "allowlist": "node scripts/allowlist.mjs"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "6.0.0",

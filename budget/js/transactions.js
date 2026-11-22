@@ -21,10 +21,16 @@ let repo = null;
 let editingId = null;
 let month = ''; // Mes visible, 'YYYY-MM'.
 let loadSeq = 0; // Descarta respuestas de meses que ya no se ven.
+let onDenied = null;
 
-/** @param {import('./repository.js').Repository} repository */
-export function startTransactions(repository) {
+/**
+ * @param {import('./repository.js').Repository} repository
+ * @param {{ onDenied?: () => void }} [options] onDenied: la lectura fue
+ *   rechazada por las reglas (cuenta fuera de la lista de acceso).
+ */
+export function startTransactions(repository, options = {}) {
   repo = repository;
+  onDenied = options.onDenied ?? null;
   setMonth(today().slice(0, 7));
   resetForm();
   load();
@@ -88,8 +94,10 @@ async function load() {
     const items = await repo.listTransactions(month);
     if (seq === loadSeq) render(items);
   } catch (err) {
+    if (seq !== loadSeq) return;
+    if (err?.code === 'permission-denied' && onDenied) return onDenied();
     console.error(err);
-    if (seq === loadSeq) showError('No se pudieron cargar los movimientos.');
+    showError('No se pudieron cargar los movimientos.');
   }
 }
 

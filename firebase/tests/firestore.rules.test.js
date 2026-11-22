@@ -34,7 +34,12 @@ before(async () => {
   });
 });
 after(() => env.cleanup());
-beforeEach(() => env.clearFirestore());
+// Fake UIDs only. alice and bob are on the allowlist; carol is not.
+beforeEach(async () => {
+  await env.clearFirestore();
+  await seed('allowlist/alice', { note: 'test' });
+  await seed('allowlist/bob', { note: 'test' });
+});
 
 // Firestore as a signed-in user (uid) or signed out (no uid).
 const db = (uid) => (uid ? env.authenticatedContext(uid) : env.unauthenticatedContext()).firestore();
@@ -114,6 +119,49 @@ describe('isolation', () => {
     await assertFails(getDoc(doc(alice, 'users/alice')));
     await assertFails(setDoc(doc(alice, 'users/alice/notes/n1'), { text: 'x' }));
     await assertFails(setDoc(doc(alice, 'shared/s1'), { text: 'x' }));
+  });
+});
+
+describe('allowlist', () => {
+  test('a signed-in user not on the allowlist can not read or write their own data', async () => {
+    await seed('users/carol/transactions/t1', TX);
+    await seed('users/carol/categories/c1', CATEGORY);
+    const carol = db('carol');
+    await assertFails(getDoc(doc(carol, 'users/carol/transactions/t1')));
+    await assertFails(getDocs(monthQuery(carol, 'carol')));
+    await assertFails(setDoc(doc(carol, 'users/carol/transactions/t2'), TX));
+    await assertFails(updateDoc(doc(carol, 'users/carol/transactions/t1'), { amount: 1 }));
+    await assertFails(deleteDoc(doc(carol, 'users/carol/transactions/t1')));
+    await assertFails(getDocs(collection(carol, 'users/carol/categories')));
+    await assertFails(setDoc(doc(carol, 'users/carol/categories/c2'), CATEGORY));
+    await assertFails(deleteDoc(doc(carol, 'users/carol/categories/c1')));
+  });
+
+  test('removing a user from the allowlist cuts off access', async () => {
+    await seed('users/alice/transactions/t1', TX);
+    const ref = doc(db('alice'), 'users/alice/transactions/t1');
+    await assertSucceeds(getDoc(ref));
+    await env.withSecurityRulesDisabled((ctx) => deleteDoc(doc(ctx.firestore(), 'allowlist/alice')));
+    await assertFails(getDoc(ref));
+  });
+
+  test('an allowlisted user can not read, list or change any allowlist doc, even their own', async () => {
+    const alice = db('alice');
+    await assertFails(getDoc(doc(alice, 'allowlist/alice')));
+    await assertFails(getDoc(doc(alice, 'allowlist/bob')));
+    await assertFails(getDocs(collection(alice, 'allowlist')));
+    await assertFails(setDoc(doc(alice, 'allowlist/alice'), { note: 'x' }));
+    await assertFails(updateDoc(doc(alice, 'allowlist/alice'), { note: 'x' }));
+    await assertFails(deleteDoc(doc(alice, 'allowlist/alice')));
+    await assertFails(setDoc(doc(alice, 'allowlist/carol'), { note: 'x' }));
+  });
+
+  test('users not on the list and signed-out users can not add or read allowlist docs', async () => {
+    await assertFails(setDoc(doc(db('carol'), 'allowlist/carol'), { note: 'x' }));
+    await assertFails(getDoc(doc(db('carol'), 'allowlist/carol')));
+    await assertFails(getDoc(doc(db(), 'allowlist/alice')));
+    await assertFails(getDocs(collection(db(), 'allowlist')));
+    await assertFails(setDoc(doc(db(), 'allowlist/dave'), { note: 'x' }));
   });
 });
 
