@@ -71,7 +71,7 @@
 
   const navItems      = document.querySelectorAll('.nav__item');
   const navLinks      = document.querySelectorAll('.nav__link[data-target]');
-  const mobileItems   = document.querySelectorAll('.nav__mobile-item');
+  const mobileItems   = document.querySelectorAll('.nav__mobile-item[data-target]'); // sin data-target = enlace normal
   const contactBtns   = document.querySelectorAll('.contact-bar__btn');
   const logoBtn       = document.querySelector('.nav__logo');
 

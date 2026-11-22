@@ -146,11 +146,13 @@ p { margin: 0; }
   display: flex;
   align-items: stretch;
   list-style: none;
+  min-width: 0; /* items shrink below 200px so the nav fits 1025-1323px */
 }
 
 .nav__item {
   width: 200px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,6 +181,15 @@ p { margin: 0; }
   line-height: 1;
   padding: 0 var(--sp-1);
   cursor: pointer;
+}
+
+/* Enlace real (p. ej. PRESUPUESTO): toda la celda es clicable */
+a.nav__link {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .nav__item--active .nav__link {
@@ -238,7 +249,8 @@ p { margin: 0; }
 }
 
 .nav__mobile-menu.nav__mobile-menu--open {
-  max-height: 400px;
+  max-height: calc(100vh - var(--nav-height)); /* fits all items; scrolls on short screens */
+  overflow-y: auto;
 }
 
 .nav__mobile-item {
