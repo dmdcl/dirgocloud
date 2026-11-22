@@ -10,6 +10,9 @@ const signoutBtn = document.getElementById('signout-btn');
 const signinError = document.getElementById('signin-error');
 const userEmail = document.getElementById('user-email');
 
+// Aviso para la vista de login que debe sobrevivir al cierre de sesión.
+let loginNotice = '';
+
 // Muestra solo los elementos [data-auth] del estado actual: loading | out | in.
 function render(state) {
   document.querySelectorAll('[data-auth]').forEach((el) => {
@@ -17,16 +20,25 @@ function render(state) {
   });
 }
 
+// Las reglas rechazan a quien no está en la lista de acceso: avisar y salir.
+function denyAccess() {
+  loginNotice = 'Cuenta no autorizada.';
+  signOut();
+}
+
 onUserChanged((user) => {
-  signinError.hidden = true;
+  signinError.textContent = user ? '' : loginNotice;
+  signinError.hidden = !signinError.textContent;
+  loginNotice = '';
   userEmail.textContent = user ? user.email ?? user.uid : '';
-  if (user) startTransactions(createFirestoreRepository(db, user.uid));
+  if (user) startTransactions(createFirestoreRepository(db, user.uid), { onDenied: denyAccess });
   else stopTransactions();
   render(user ? 'in' : 'out');
 });
 
 signinBtn.addEventListener('click', async () => {
   signinError.hidden = true;
+  loginNotice = '';
   try {
     await signInWithGoogle();
   } catch (err) {
