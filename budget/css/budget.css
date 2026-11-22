@@ -1,39 +1,51 @@
 /* ─────────────────────────────────────────
    BUDGET APP (/budget/)
-   Loaded after ../css/styles.css: reuses its tokens, fonts and .nav.
+   Loaded after ../css/styles.css: reuses its colors, fonts and .nav.
+   Sizes: budget-only tokens, about 80% of the site's (--fs-*, --sp-*,
+   container), fluid 320px -> 1280px like styles.css. Text never below 14px.
 ───────────────────────────────────────── */
 .budget__inner {
-  max-width: var(--container-width);
+  --b-fs-title: clamp(1.1rem, 0.8667rem + 1.1667vw, 1.8rem);   /* 17.6px -> 28.8px */
+  --b-fs-btn:   clamp(1.1rem, 0.8667rem + 1.1667vw, 1.8rem);   /* 17.6px -> 28.8px */
+  --b-fs-body:  clamp(0.875rem, 0.7667rem + 0.5417vw, 1.2rem); /* 14px -> 19.2px */
+  --b-fs-text:  clamp(0.875rem, 0.8333rem + 0.2083vw, 1rem);   /* 14px -> 16px */
+  --b-sp-1: 0.4rem;  /*  6.4px */
+  --b-sp-2: 0.8rem;  /* 12.8px */
+  --b-sp-3: 1.2rem;  /* 19.2px */
+  --b-sp-4: 1.6rem;  /* 25.6px */
+  --b-sp-5: 2.4rem;  /* 38.4px */
+
+  max-width: 64rem; /* 1024px: 80% of --container-width */
   width: 100%;
   margin: 0 auto;
-  padding: var(--sp-5);
+  padding: var(--b-sp-5);
 }
 
 .budget__title {
   font-family: var(--font-poppins);
-  font-size: var(--fs-hero);
+  font-size: var(--b-fs-title);
   color: var(--color-heading);
   font-weight: 700;
   line-height: 1.4;
 }
 
 .budget__text {
-  font-size: var(--fs-body-sm);
+  font-size: var(--b-fs-text);
   color: var(--color-text-secondary);
   line-height: 1.8;
-  margin-top: var(--sp-2);
+  margin-top: var(--b-sp-2);
 }
 
 .budget__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--sp-4);
-  padding: var(--sp-2) var(--sp-4);
+  margin-top: var(--b-sp-4);
+  padding: var(--b-sp-2) var(--b-sp-4);
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
   font-family: var(--font-oswald);
-  font-size: var(--fs-btn);
+  font-size: var(--b-fs-btn);
   color: var(--color-highlight);
   letter-spacing: 1px;
   cursor: pointer;
@@ -45,31 +57,31 @@
 }
 
 .budget__error {
-  font-size: var(--fs-body-sm);
+  font-size: var(--b-fs-text);
   color: var(--color-highlight);
   line-height: 1.8;
-  margin-top: var(--sp-2);
+  margin-top: var(--b-sp-2);
 }
 
 /* ── Transactions (module 3) ── */
 .tx__month {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
-  margin-top: var(--sp-5);
+  gap: var(--b-sp-2);
+  margin-top: var(--b-sp-5);
 }
 
 .tx__month .budget__btn { margin-top: 0; }
 
-.tx__nav { padding: 0 var(--sp-2); }
+.tx__nav { padding: 0 var(--b-sp-2); }
 
 .tx__input {
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
   color: var(--color-text-primary);
   font-family: var(--font-mono);
-  font-size: var(--fs-body-sm);
-  padding: var(--sp-1) var(--sp-2);
+  font-size: var(--b-fs-text);
+  padding: var(--b-sp-1) var(--b-sp-2);
   color-scheme: dark;
   min-width: 0;
 }
@@ -79,15 +91,15 @@
 .tx__totals {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-2);
-  margin-top: var(--sp-4);
+  gap: var(--b-sp-2);
+  margin-top: var(--b-sp-4);
 }
 
 .tx__totals > div,
 .tx__form {
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
-  padding: var(--sp-3);
+  padding: var(--b-sp-3);
 }
 
 .tx__totals dt,
@@ -95,22 +107,22 @@
 .tx__subtitle,
 .tx__link {
   font-family: var(--font-oswald);
-  font-size: var(--fs-body-sm);
+  font-size: var(--b-fs-text);
   color: var(--color-highlight);
   letter-spacing: 1px;
 }
 
 .tx__totals dd {
-  font-size: var(--fs-body);
+  font-size: var(--b-fs-body);
   color: var(--color-text-primary);
-  margin-top: var(--sp-1);
+  margin-top: var(--b-sp-1);
 }
 
 .tx__form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-2) var(--sp-3);
-  margin-top: var(--sp-4);
+  gap: var(--b-sp-2) var(--b-sp-3);
+  margin-top: var(--b-sp-4);
 }
 
 .tx__subtitle,
@@ -122,30 +134,30 @@
 .tx__field {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-1);
+  gap: var(--b-sp-1);
 }
 
 .tx__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-2);
+  gap: var(--b-sp-2);
 }
 
 .tx__actions .budget__btn { margin-top: 0; }
 
 .tx__list {
   list-style: none;
-  margin-top: var(--sp-4);
+  margin-top: var(--b-sp-4);
 }
 
 .tx__item {
   display: grid;
   grid-template-columns: auto 1fr auto auto auto;
   align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-2) 0;
+  gap: var(--b-sp-3);
+  padding: var(--b-sp-2) 0;
   border-bottom: 1px solid var(--color-border);
-  font-size: var(--fs-body-sm);
+  font-size: var(--b-fs-text);
   color: var(--color-text-primary);
 }
 
@@ -173,7 +185,7 @@
    RESPONSIVE — TABLET (max-width: 1024px)
 ───────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .budget__inner { padding: var(--sp-4) var(--sp-3); }
+  .budget__inner { padding: var(--b-sp-4) var(--b-sp-3); }
   .tx__form { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -181,13 +193,18 @@
    RESPONSIVE — MOBILE (max-width: 768px)
 ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .budget__inner { padding: var(--sp-3) var(--sp-2); }
+  .budget__inner { padding: var(--b-sp-3) var(--b-sp-2); }
   .tx__totals,
   .tx__form { grid-template-columns: 1fr; }
+  /* Tap targets: at least 44px */
+  .budget__btn,
+  .tx__input,
+  .tx__link { min-height: 2.75rem; }
+  .tx__nav { min-width: 2.75rem; }
   .tx__item {
     grid-template-columns: 1fr auto auto;
     grid-template-areas: "date amount amount" "desc edit del";
-    gap: var(--sp-1) var(--sp-2);
+    gap: var(--b-sp-1) var(--b-sp-2);
   }
   .tx__date { grid-area: date; }
   .tx__desc { grid-area: desc; }
