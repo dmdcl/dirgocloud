@@ -26,8 +26,10 @@
 
 /**
  * @typedef {Object} Repository
- * @property {(month: string) => Promise<Transaction[]>} listTransactions
- *   Movimientos del mes 'YYYY-MM', del más reciente al más antiguo.
+ * @property {(month: string, onChange: (items: Transaction[]) => void, onError: (err: Error) => void) => () => void} watchTransactions
+ *   Escucha los movimientos del mes 'YYYY-MM', del más reciente al más antiguo:
+ *   llama a onChange con la lista completa al inicio y tras cada cambio (de este
+ *   u otro dispositivo). Devuelve la función que deja de escuchar.
  * @property {(data: Omit<Transaction, 'id'>) => Promise<string>} addTransaction  Devuelve el id nuevo.
  * @property {(id: string, data: Omit<Transaction, 'id'>) => Promise<void>} updateTransaction
  * @property {(id: string) => Promise<void>} deleteTransaction

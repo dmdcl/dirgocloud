@@ -6,6 +6,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  onSnapshot,
   orderBy,
   query,
   setDoc,
@@ -22,14 +23,20 @@ export function createFirestoreRepository(db, uid) {
   const categories = collection(db, 'users', uid, 'categories');
 
   return {
-    async listTransactions(month) {
-      const snap = await getDocs(query(
+    // Un listener por mes: tras la primera lectura, cada cambio cuesta solo los
+    // documentos que cambian, en vez de volver a leer el mes completo.
+    watchTransactions(month, onChange, onError) {
+      const monthQuery = query(
         transactions,
         where('date', '>=', `${month}-01`),
         where('date', '<=', `${month}-31`),
         orderBy('date', 'desc'),
-      ));
-      return snap.docs.map((d) => ({ id: d.id, ...pickTransaction(d.data()) }));
+      );
+      return onSnapshot(
+        monthQuery,
+        (snap) => onChange(snap.docs.map((d) => ({ id: d.id, ...pickTransaction(d.data()) }))),
+        onError,
+      );
     },
     async addTransaction(data) {
       return (await addDoc(transactions, pickTransaction(data))).id;

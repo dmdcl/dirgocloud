@@ -1,5 +1,6 @@
 // Movimientos del mes: lista, totales y formulario para agregar / editar / borrar.
 // Solo habla con un Repository (repository.js), nunca con Firestore directo.
+import { shiftMonth, todayMX } from './dates.js';
 
 const $ = (id) => document.getElementById(id);
 const monthLabel = $('month-label');
@@ -20,7 +21,7 @@ const MAX_CENTS = 100000000000; // Mismo límite que firestore.rules.
 let repo = null;
 let editingId = null;
 let month = ''; // Mes visible, 'YYYY-MM'.
-let loadSeq = 0; // Descarta respuestas de meses que ya no se ven.
+let unwatch = null; // Deja de escuchar el mes visible.
 let onDenied = null;
 
 /**
@@ -31,23 +32,17 @@ let onDenied = null;
 export function startTransactions(repository, options = {}) {
   repo = repository;
   onDenied = options.onDenied ?? null;
-  setMonth(today().slice(0, 7));
+  setMonth(todayMX().slice(0, 7));
   resetForm();
-  load();
+  watch();
 }
 
 export function stopTransactions() {
   repo = null;
-  loadSeq++;
+  stopWatching();
   list.replaceChildren();
   resetForm();
   showError('');
-}
-
-// Fecha local 'YYYY-MM-DD' (toISOString usaría UTC).
-function today() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
 // Etiqueta en español sin depender del idioma del navegador: 'Noviembre de 2026'.
@@ -57,12 +52,6 @@ function setMonth(value) {
   const label = monthName.format(new Date(y, m - 1, 1));
   monthLabel.textContent = label.charAt(0).toUpperCase() + label.slice(1);
   monthLabel.dataset.month = value;
-}
-
-function shiftMonth(value, delta) {
-  const [y, m] = value.split('-').map(Number);
-  const d = new Date(y, m - 1 + delta, 1);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 }
 
 // '1,234.5' -> 123450 centavos; null si no es un monto válido.
@@ -81,24 +70,31 @@ function showError(message) {
 function resetForm() {
   editingId = null;
   form.reset();
-  form.elements.date.value = !month || today().startsWith(month) ? today() : `${month}-01`;
+  // Sin fechas futuras (en hora de la Ciudad de México). En un mes pasado, el día 1.
+  const today = todayMX();
+  form.elements.date.max = today;
+  form.elements.date.value = month && month < today.slice(0, 7) ? `${month}-01` : today;
   formTitle.textContent = 'NUEVO MOVIMIENTO';
   submitBtn.textContent = 'AGREGAR';
   cancelBtn.hidden = true;
 }
 
-async function load() {
+// Escucha el mes visible: la primera lista y cada cambio posterior (de este u
+// otro dispositivo) llegan a render() sin volver a leer el mes tras cada cambio.
+function watch() {
+  stopWatching();
   if (!repo || !month) return;
-  const seq = ++loadSeq;
-  try {
-    const items = await repo.listTransactions(month);
-    if (seq === loadSeq) render(items);
-  } catch (err) {
-    if (seq !== loadSeq) return;
+  unwatch = repo.watchTransactions(month, render, (err) => {
+    unwatch = null; // Firestore ya cerró este listener.
     if (err?.code === 'permission-denied' && onDenied) return onDenied();
     console.error(err);
     showError('No se pudieron cargar los movimientos.');
-  }
+  });
+}
+
+function stopWatching() {
+  unwatch?.();
+  unwatch = null;
 }
 
 function render(items) {
@@ -157,7 +153,6 @@ async function remove(tx) {
   try {
     await repo.deleteTransaction(tx.id);
     if (editingId === tx.id) resetForm();
-    await load();
   } catch (err) {
     console.error(err);
     showError('No se pudo borrar el movimiento.');
@@ -170,6 +165,7 @@ form.addEventListener('submit', async (e) => {
   const f = form.elements;
   const amount = parseCents(f.amount.value);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(f.date.value)) return showError('Elige una fecha.');
+  if (f.date.value > todayMX()) return showError('La fecha no puede ser posterior a hoy.');
   if (amount === null) return showError('Escribe un monto mayor a 0, con hasta 2 decimales.');
 
   const data = {
@@ -184,9 +180,13 @@ form.addEventListener('submit', async (e) => {
   try {
     if (editingId) await repo.updateTransaction(editingId, data);
     else await repo.addTransaction(data);
-    setMonth(data.date.slice(0, 7)); // Muestra el mes del movimiento guardado.
+    // Muestra el mes del movimiento guardado; la lista se actualiza sola.
+    const saved = data.date.slice(0, 7);
+    if (saved !== month) {
+      setMonth(saved);
+      watch();
+    }
     resetForm();
-    await load();
   } catch (err) {
     console.error(err);
     showError('No se pudo guardar el movimiento.');
@@ -201,7 +201,7 @@ function changeMonth(value) {
   setMonth(value);
   if (!editingId) resetForm();
   showError('');
-  load();
+  watch();
 }
 
 $('month-prev').addEventListener('click', () => changeMonth(shiftMonth(month, -1)));
