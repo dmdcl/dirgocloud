@@ -25,6 +25,15 @@
  */
 
 /**
+ * @typedef {Object} BackupData  Documentos del usuario tal como están guardados,
+ *   cada uno como { id, ...campos }.
+ * @property {Array<{ id: string }>} accounts
+ * @property {Array<{ id: string }>} transactions
+ * @property {Array<{ id: string }>} categories
+ * @property {Array<{ id: string }>} settings
+ */
+
+/**
  * @typedef {Object} Repository
  * @property {(month: string, onChange: (items: Transaction[]) => void, onError: (err: Error) => void) => () => void} watchTransactions
  *   Escucha los movimientos del mes 'YYYY-MM', del más reciente al más antiguo:
@@ -37,6 +46,9 @@
  * @property {(data: Omit<Category, 'id'>) => Promise<string>} addCategory  Devuelve el id nuevo.
  * @property {(id: string, data: Omit<Category, 'id'>) => Promise<void>} updateCategory
  * @property {(id: string) => Promise<void>} deleteCategory
+ * @property {() => Promise<BackupData>} exportData
+ *   Todos los documentos del usuario, leídos del servidor (falla sin conexión),
+ *   para el respaldo JSON (backup.js).
  */
 
 export {};

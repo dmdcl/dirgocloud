@@ -240,6 +240,20 @@
 
 .tx__link:hover { color: var(--color-tint); }
 
+/* ── Backup (A1a): JSON export at the bottom of the app ── */
+.budget__backup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--b-sp-2) var(--b-sp-3);
+  margin-top: var(--b-sp-5);
+  padding-top: var(--b-sp-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.budget__backup .budget__btn,
+.budget__backup .budget__text { margin-top: 0; }
+
 /* Auth guard: hidden must win over any display rule */
 [hidden] { display: none !important; }
 

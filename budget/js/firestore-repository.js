@@ -6,6 +6,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  getDocsFromServer,
   onSnapshot,
   orderBy,
   query,
@@ -63,7 +64,20 @@ export function createFirestoreRepository(db, uid) {
     async deleteCategory(id) {
       await deleteDoc(doc(categories, id));
     },
+
+    // Todo lo del usuario tal como está guardado, leído del servidor (no de la
+    // caché; sin conexión falla). accounts y settings llegan con A1c: las reglas
+    // actuales no permiten que existan, así que van vacíos.
+    async exportData() {
+      const [tx, cats] = await Promise.all([getDocsFromServer(transactions), getDocsFromServer(categories)]);
+      return { accounts: [], transactions: rawDocs(tx), categories: rawDocs(cats), settings: [] };
+    },
   };
+}
+
+// { id, ...campos } sin filtrar: el respaldo guarda cada documento tal cual.
+function rawDocs(snap) {
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
 // Solo los campos del modelo, con sus valores por defecto: así un objeto con
